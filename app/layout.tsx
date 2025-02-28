@@ -17,6 +17,7 @@ export const metadata: Metadata = {
     title: "ToDo List",
     description: "A todo list made by TzuHan Chen",
     siteName: "ToDo List",
+    images: "opengraph-image.jpg"
   }
 };
 
