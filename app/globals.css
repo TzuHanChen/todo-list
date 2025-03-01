@@ -1,5 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,0&display=swap");
 @import "tailwindcss";
 
 @theme {
-  --font-noto: var(--font-noto-sans-tc);
+  --font-noto: var(--font-noto);
+  --font-material-symbols-rounded: "Material Symbols Rounded", sans-serif;
 }
