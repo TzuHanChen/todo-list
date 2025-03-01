@@ -5,3 +5,7 @@
   --font-noto: var(--font-noto);
   --font-material-symbols-rounded: "Material Symbols Rounded", sans-serif;
 }
+
+@utility font-variation-fill-1 {
+  font-variation-settings: 'FILL' 1;
+}
