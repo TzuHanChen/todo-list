@@ -1,5 +1,27 @@
 import AddTask from "./add-task";
-import TaskCard from "./task-card";
+import TaskCard, { NoTaskCard, DataError } from "./task-card";
+import { Task } from "./type";
+
+async function TaskList() {
+  const res = await fetch(process.env.BACKEND_URL + '/task',{
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    method: 'GET'
+  });
+  if (!res.ok) return <DataError />
+
+  const data = await res.json();
+  if (data.total === 0) return <NoTaskCard />
+
+  return (
+    <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {data.data.map((task: Task) => {
+        return <TaskCard key={task.id} data={task} />
+      })}
+    </div>
+  )
+}
 
 export default function Home() {
   return (
@@ -19,11 +41,7 @@ export default function Home() {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <TaskCard />
-          <TaskCard />
-          <TaskCard />
-        </div>
+        <TaskList />
       </div>
     </main>
   )
