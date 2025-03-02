@@ -9,12 +9,15 @@ export default function AddTask() {
 	const descriptionRef = useRef<HTMLTextAreaElement>(null);
 	const [nameRequired, setNameRequired] = useState(false);
 
-	function handleCreateTask(formData: FormData) {
+	function handleCreateTask() {
 		if (nameRef.current && descriptionRef.current) {
 			if (nameRef.current.value === '') {
 				setNameRequired(true);
 			} else {
 				setNameRequired(false);
+				const formData = new FormData();
+				formData.set('name', nameRef.current.value);
+				formData.set('description', descriptionRef.current.value);
 				createTask(formData);
 			}
 		}
@@ -30,7 +33,7 @@ export default function AddTask() {
 				<span className="font-material-symbols-rounded text-2xl group-data-open:rotate-180 group-data-open:transition group-data-open:duration-300">keyboard_arrow_down</span>
 			</DisclosureButton>
 
-			<DisclosurePanel as="form" action={handleCreateTask} className="w-full flex flex-col gap-3 py-3 px-6">
+			<DisclosurePanel className="w-full flex flex-col gap-3 py-3 px-6">
 				<label className="flex flex-col gap-1.5">
 					<p>名稱</p>
 					<input type="text" name="name" required maxLength={10} ref={nameRef}
@@ -43,8 +46,8 @@ export default function AddTask() {
 						className="border border-gray-400 py-1.5 px-3 field-sizing-content"></textarea>
 				</label>
 				<div className="mt-3 flex justify-end">
-					<input type="submit" value="新增"
-						className="bg-teal-700 py-3 px-6 text-white text-xl cursor-pointer active:bg-teal-900 transition-colors duration-300" />
+					<button onClick={() => handleCreateTask()}
+						className="bg-teal-700 py-3 px-6 text-white text-xl cursor-pointer active:bg-teal-900 transition-colors duration-300">新增</button>
 				</div>
 			</DisclosurePanel>
 		</Disclosure>

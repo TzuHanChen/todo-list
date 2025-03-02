@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { Task } from "./type";
+import { updateTask } from './actions';
 
 function Read({ data, setView }: {
 	setView: React.Dispatch<React.SetStateAction<string>>,
@@ -41,7 +42,30 @@ function Read({ data, setView }: {
 	</>)
 }
 
-function Edit({ setView }: { setView: React.Dispatch<React.SetStateAction<string>> }) {
+function Edit({ data, setView }: {
+	setView: React.Dispatch<React.SetStateAction<string>>,
+	data: Task
+}) {
+	const nameRef = useRef<HTMLInputElement>(null);
+	const descriptionRef = useRef<HTMLTextAreaElement>(null);
+	const [nameRequired, setNameRequired] = useState(false);
+
+	function handleUpdateTask() {
+		if (nameRef.current && descriptionRef.current) {
+			if (nameRef.current.value === '') {
+				setNameRequired(true);
+			} else {
+				setNameRequired(false);
+				const formData = new FormData();
+				formData.set('id', data.id.toString());
+				formData.set('name', nameRef.current.value);
+				formData.set('description', descriptionRef.current.value);
+				updateTask(formData)
+					.then(() => setView('read'));
+			}
+		}
+	}
+
 	return (<>
 		<div>
 			<div className="flex items-center gap-1.5">
@@ -54,20 +78,23 @@ function Edit({ setView }: { setView: React.Dispatch<React.SetStateAction<string
 			<div className="mt-3 flex flex-col gap-3">
 				<label className="flex flex-col gap-1.5">
 					<p>名稱</p>
-					<input type="text" name="name" required maxLength={10} className="border border-gray-400 py-1.5 px-3" />
-					<p className="text-red-800">請輸入任務名稱</p>
+					<input type="text" name="name" defaultValue={data.name} required maxLength={10} ref={nameRef}
+						className="border border-gray-400 py-1.5 px-3" />
+					{nameRequired && <p className="text-red-800">請輸入任務名稱</p>}
 				</label>
 				<label className="flex flex-col gap-1.5">
 					<p>描述</p>
-					<textarea name="description" maxLength={30} className="border border-gray-400 py-1.5 px-3 field-sizing-content"></textarea>
+					<textarea name="description" defaultValue={data.description} maxLength={30} ref={descriptionRef}
+						className="border border-gray-400 py-1.5 px-3 field-sizing-content"></textarea>
 				</label>
 			</div>
 		</div>
 
 		<div className="mt-6 w-full flex justify-between">
-			<button onClick={() => setView('read')} className="bg-gray-200 py-3 px-6  cursor-pointer active:bg-gray-300 transition-colors duration-300">取消</button>
-			<button
-				className="bg-gray-200 py-3 px-6  cursor-pointer active:bg-gray-300 transition-colors duration-300">保存</button>
+			<button onClick={() => setView('read')}
+				className="bg-gray-200 py-3 px-6  cursor-pointer active:bg-gray-300 transition-colors duration-300">取消</button>
+			<button onClick={() => handleUpdateTask()}
+				className="bg-gray-200 py-3 px-6 cursor-pointer active:bg-gray-300 transition-colors duration-300">保存</button>
 		</div>
 	</>)
 }
@@ -82,7 +109,7 @@ export default function TaskCard({ data }: { data: Task }) {
 			data-show={!data.is_completed || (data.is_completed && showCompleted)}
 			className="border border-gray-300 min-h-80 p-6 flex flex-col justify-between group hover:shadow-lg transition-shadow duration-700 data-[show=false]:hidden">
 			{view === 'read' && <Read setView={setView} data={data} />}
-			{view === 'edit' && <Edit setView={setView} />}
+			{view === 'edit' && <Edit setView={setView} data={data} />}
 		</div>
 	)
 }
