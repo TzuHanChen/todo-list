@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import AddTask from "./add-task";
 import ShowCompleted from "./show-completed";
 import TaskCard, { NoTaskCard, DataError } from "./task-card";
@@ -33,10 +34,14 @@ export default function Home() {
             <span className="font-material-symbols-rounded text-2xl">task</span>
             <span className="text-xl">任務列表</span>
           </h2>
-          <ShowCompleted />
+          <Suspense>
+            <ShowCompleted />
+          </Suspense>
         </div>
 
-        <TaskList />
+        <Suspense>
+          <TaskList />
+        </Suspense>
       </div>
     </main>
   )
