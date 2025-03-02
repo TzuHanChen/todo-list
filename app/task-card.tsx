@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Task } from "./type";
 
 function Read({ data, setView }: {
@@ -16,8 +17,8 @@ function Read({ data, setView }: {
 		<div>
 			<div className="flex items-center gap-1.5">
 				<button className="size-9 flex justify-center items-center gap-1.5 cursor-pointer active:bg-gray-200 transition-colors duration-300">
-					<span className="font-material-symbols-rounded text-2xl group-data-[completed=true]:hidden">circle</span>
-					<span className="font-material-symbols-rounded font-variation-fill-1 text-2xl hidden group-data-[completed=true]:inline">check_circle</span>
+					<span className="font-material-symbols-rounded text-2xl group-data-[is-completed=true]:hidden">circle</span>
+					<span className="font-material-symbols-rounded font-variation-fill-1 text-2xl hidden group-data-[is-completed=true]:inline">check_circle</span>
 				</button>
 				<h3 className="text-2xl">{data.name}</h3>
 			</div>
@@ -73,9 +74,13 @@ function Edit({ setView }: { setView: React.Dispatch<React.SetStateAction<string
 
 export default function TaskCard({ data }: { data: Task }) {
 	const [view, setView] = useState('read');
+	const searchParams = useSearchParams();
+	const showCompleted = (searchParams.get('show-completed') === 'true');
 
 	return (
-		<div data-completed={data.is_completed} className="border border-gray-300 min-h-80 p-6 flex flex-col justify-between group hover:shadow-lg transition-shadow duration-700">
+		<div data-is-completed={data.is_completed}
+			data-show={!data.is_completed || (data.is_completed && showCompleted)}
+			className="border border-gray-300 min-h-80 p-6 flex flex-col justify-between group hover:shadow-lg transition-shadow duration-700 data-[show=false]:hidden">
 			{view === 'read' && <Read setView={setView} data={data} />}
 			{view === 'edit' && <Edit setView={setView} />}
 		</div>
