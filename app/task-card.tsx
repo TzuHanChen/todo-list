@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { Task } from "./type";
-import { updateTask } from './actions';
+import { updateTask, updateTaskStatus } from './actions';
 
 function Read({ data, setView }: {
 	setView: React.Dispatch<React.SetStateAction<string>>,
@@ -17,7 +17,8 @@ function Read({ data, setView }: {
 	return (<>
 		<div>
 			<div className="flex items-center gap-1.5">
-				<button className="size-9 flex justify-center items-center gap-1.5 cursor-pointer active:bg-gray-200 transition-colors duration-300">
+				<button onClick={() => updateTaskStatus(data.id.toString())}
+					className="size-9 flex justify-center items-center gap-1.5 cursor-pointer active:bg-gray-200 transition-colors duration-300">
 					<span className="font-material-symbols-rounded text-2xl group-data-[is-completed=true]:hidden">circle</span>
 					<span className="font-material-symbols-rounded font-variation-fill-1 text-2xl hidden group-data-[is-completed=true]:inline">check_circle</span>
 				</button>
@@ -57,10 +58,9 @@ function Edit({ data, setView }: {
 			} else {
 				setNameRequired(false);
 				const formData = new FormData();
-				formData.set('id', data.id.toString());
 				formData.set('name', nameRef.current.value);
 				formData.set('description', descriptionRef.current.value);
-				updateTask(formData)
+				updateTask(data.id.toString(), formData)
 					.then(() => setView('read'));
 			}
 		}
