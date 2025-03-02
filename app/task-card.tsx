@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { Task } from "./type";
-import { updateTask, updateTaskStatus } from './actions';
+import { updateTask, updateTaskStatus, deleteTask } from './actions';
 
 function Read({ data, setView }: {
 	setView: React.Dispatch<React.SetStateAction<string>>,
@@ -35,7 +35,8 @@ function Read({ data, setView }: {
 			</div>
 
 			<div className="mt-6 w-full flex justify-between">
-				<button className="bg-gray-200 py-3 px-6  cursor-pointer active:bg-gray-300 transition-colors duration-300">刪除</button>
+				<button onClick={() => setView('delete')}
+					className="bg-gray-200 py-3 px-6  cursor-pointer active:bg-gray-300 transition-colors duration-300">刪除</button>
 				<button onClick={() => setView('edit')}
 					className="bg-gray-200 py-3 px-6  cursor-pointer active:bg-gray-300 transition-colors duration-300">編輯</button>
 			</div>
@@ -69,9 +70,9 @@ function Edit({ data, setView }: {
 	return (<>
 		<div>
 			<div className="flex items-center gap-1.5">
-				<button className="size-9 flex justify-center items-center gap-1.5 cursor-pointer active:bg-gray-200 transition-colors duration-300">
+				<div className="size-9 flex justify-center items-center">
 					<span className="font-material-symbols-rounded text-2xl">edit_note</span>
-				</button>
+				</div>
 				<h3 className="text-2xl">編輯任務</h3>
 			</div>
 
@@ -99,6 +100,30 @@ function Edit({ data, setView }: {
 	</>)
 }
 
+function Delete({ data, setView }: {
+	setView: React.Dispatch<React.SetStateAction<string>>,
+	data: Task
+}) {
+	return (<>
+		<div>
+			<div className="flex items-center gap-1.5">
+				<div className="size-9 flex justify-center items-center">
+					<span className="font-material-symbols-rounded text-2xl">delete</span>
+				</div>
+				<h3 className="text-2xl">刪除任務</h3>
+			</div>
+			<p className="mt-3 text-xl">確定要刪除這個任務嗎？</p>
+		</div>
+
+		<div className="mt-6 w-full flex justify-between">
+			<button onClick={() => setView('read')}
+				className="bg-gray-200 py-3 px-6  cursor-pointer active:bg-gray-300 transition-colors duration-300">取消</button>
+			<button onClick={() => deleteTask(data.id.toString())}
+				className="bg-gray-200 py-3 px-6  cursor-pointer active:bg-gray-300 transition-colors duration-300">刪除</button>
+		</div>
+	</>)
+}
+
 export default function TaskCard({ data }: { data: Task }) {
 	const [view, setView] = useState('read');
 	const searchParams = useSearchParams();
@@ -110,6 +135,7 @@ export default function TaskCard({ data }: { data: Task }) {
 			className="border border-gray-300 min-h-80 p-6 flex flex-col justify-between group hover:shadow-lg transition-shadow duration-700 data-[show=false]:hidden">
 			{view === 'read' && <Read setView={setView} data={data} />}
 			{view === 'edit' && <Edit setView={setView} data={data} />}
+			{view === 'delete' && <Delete setView={setView} data={data} />}
 		</div>
 	)
 }
