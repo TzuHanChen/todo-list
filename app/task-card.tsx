@@ -75,7 +75,7 @@ function Edit({ setView }: { setView: React.Dispatch<React.SetStateAction<string
 export default function TaskCard({ data }: { data: Task }) {
 	const [view, setView] = useState('read');
 	const searchParams = useSearchParams();
-	const showCompleted = (searchParams.get('show-completed') === 'true');
+	const showCompleted = (searchParams.get('show-completed') || 'true');
 
 	return (
 		<div data-is-completed={data.is_completed}
