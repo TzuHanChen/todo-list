@@ -28,7 +28,7 @@ export default function Home() {
     <main className="p-6 flex flex-col gap-3">
       <AddTask />
 
-      <div className="pt-6 flex flex-col gap-6">
+      <div className="py-6 flex flex-col gap-6">
         <div className="flex justify-between items-center">
           <h2 className="flex items-center gap-1.5">
             <span className="font-material-symbols-rounded text-2xl">task</span>
