@@ -10,7 +10,11 @@
 
 ## 開發工具
 
-Next.js + Taiwind CSS + TypeScript + Material Symbols + Headless UI
+Next.js + Tailwind CSS + TypeScript + Material Symbols + Headless UI
+
+## 部署
+
+使用 Vercel 取得 GitHub repo 的提交紀錄、自動部署
 
 ## 相關連結
 
