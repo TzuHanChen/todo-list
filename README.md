@@ -4,7 +4,7 @@
 
 <h1 align="center">ToDo List</h1>
 
-<p align="center">一個可以新增、檢視、編輯、刪除任務的網站</p>
+<p align="center">實作完整 CRUD 功能的任務管理系統，可顯示或隱藏已完成的任務</p>
 
 ![截圖](/public/screenshot.png)
 

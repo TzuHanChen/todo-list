@@ -11,12 +11,12 @@ const notoSansTc = Noto_Sans_TC({
 
 export const metadata: Metadata = {
   title: "Todo List",
-  description: "A todo list made by TzuHan Chen",
+  description: "實作完整 CRUD 功能的任務管理系統，可顯示或隱藏已完成的任務",
   openGraph: {
     type: "website",
     url: "https://todo-list-tzuhanchen.vercel.app",
     title: "ToDo List",
-    description: "A todo list made by TzuHan Chen",
+    description: "實作完整 CRUD 功能的任務管理系統，可顯示或隱藏已完成的任務",
     siteName: "ToDo List",
     images: "https://todo-list-tzuhanchen.vercel.app/opengraph-image.jpg"
   }
