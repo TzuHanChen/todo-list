@@ -1,6 +1,12 @@
-# ToDo List
+<p align="center">
+  <img src="https://github.com/TzuHanChen/todo-list/raw/main/app/icon.svg" alt="圖示" />
+</p>
 
-一個可以新增、檢視、編輯、刪除任務的網站
+<h1 align="center">ToDo List</h1>
+
+<p align="center">一個可以新增、檢視、編輯、刪除任務的網站</p>
+
+![截圖](/public/screenshot.png)
 
 ## 開發工具
 
