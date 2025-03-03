@@ -25,18 +25,18 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="zh-TW">
-      <body className={`relative bg-gray-50 text-gray-700 ${notoSansTc.variable} font-noto antialiased selection:bg-gray-700 selection:text-gray-200`}>
-        <header className="absolute top-0 right-0 left-0">
-          <div className="block mx-auto w-full max-w-5xl bg-gray-100">
-            <Link href="/" className="block w-max py-3 px-6">
-              <h1 className="text-2xl">ToDo List</h1>
+      <body className={`px-6 text-gray-700 ${notoSansTc.variable} font-noto antialiased selection:bg-gray-700 selection:text-gray-200`}>
+        <div className="my-12 mx-auto shadow-md rounded-2xl border border-gray-200 w-full max-w-5xl">
+          <header className="rounded-t-2xl bg-gray-600">
+            <Link href="/" className="block w-max py-4.5 px-6">
+              <h1 className="text-3xl text-white font-bold">ToDo List</h1>
             </Link>
-          </div>
-        </header>
-        {children}
-        <footer className="mx-auto w-full max-w-5xl bg-gray-100 py-3 px-6 text-center">
-          <p>© 2025 陳子涵</p>
-        </footer>
+          </header>
+          {children}
+          <footer className="rounded-b-2xl bg-gray-100 py-3 px-6 text-center">
+            <p>© 2025 陳子涵</p>
+          </footer>
+        </div>
       </body>
     </html>
   );

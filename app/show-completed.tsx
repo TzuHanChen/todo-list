@@ -26,10 +26,10 @@ export default function ShowCompleted() {
 
 	return (
 		<button data-show-completed={showCompleted} onClick={() => handleToggle(!showCompleted)}
-		className="py-1.5 px-3 flex items-center gap-1.5 group cursor-pointer active:bg-gray-200 transition-colors duration-300">
+		className="rounded-full py-1.5 px-4.5 flex items-center gap-1.5 group cursor-pointer hover:bg-gray-100 active:bg-gray-100 transition-colors duration-300">
 			<span className="font-material-symbols-rounded font-variation-fill-1 text-2xl group-data-[show-completed=false]:hidden">visibility</span>
 			<span className="font-material-symbols-rounded text-2xl hidden group-data-[show-completed=false]:inline">visibility_off</span>
-			<span>顯示已完成的任務</span>
+			<span>顯示已完成</span>
 		</button>
 	)
 }

@@ -25,10 +25,10 @@ async function TaskList() {
 
 export default function Home() {
   return (
-    <main className="mx-auto w-full max-w-5xl pt-18 pb-3 flex flex-col gap-3">
+    <main className="p-6 flex flex-col gap-3">
       <AddTask />
 
-      <div className="bg-gray-100 p-6 flex flex-col gap-6">
+      <div className="pt-6 flex flex-col gap-6">
         <div className="flex justify-between items-center">
           <h2 className="flex items-center gap-1.5">
             <span className="font-material-symbols-rounded text-2xl">task</span>

@@ -15,12 +15,12 @@ function Read({ data, setView }: {
 	const updatedTimeString = updatedTime.toISOString().split('.')[0].replace('T', ' ');
 
 	return (<>
-		<div>
+		<div className="p-4.5">
 			<div className="flex items-center gap-1.5">
 				<button onClick={() => updateTaskStatus(data.id.toString())}
 					className="size-9 flex justify-center items-center gap-1.5 cursor-pointer active:bg-gray-200 transition-colors duration-300">
-					<span className="font-material-symbols-rounded text-2xl group-data-[is-completed=true]:hidden">circle</span>
-					<span className="font-material-symbols-rounded font-variation-fill-1 text-2xl hidden group-data-[is-completed=true]:inline">check_circle</span>
+					<span className="font-material-symbols-rounded text-4xl group-data-[is-completed=true]:hidden">circle</span>
+					<span className="font-material-symbols-rounded font-variation-fill-1 text-4xl hidden group-data-[is-completed=true]:inline">check_circle</span>
 				</button>
 				<h3 className="text-2xl">{data.name}</h3>
 			</div>
@@ -29,16 +29,22 @@ function Read({ data, setView }: {
 		</div>
 
 		<div>
-			<div className="mt-6 flex flex-col gap-1.5 text-gray-600">
+			<div className="p-4.5 flex flex-col gap-1.5 text-gray-500 text-sm">
 				<p>創建時間：{createdTimeString}</p>
 				<p>更新時間：{updatedTimeString}</p>
 			</div>
 
-			<div className="mt-6 w-full flex justify-between">
+			<div className="w-full py-3 px-4.5 bg-gray-100 flex justify-end gap-3">
 				<button onClick={() => setView('delete')}
-					className="bg-gray-200 py-3 px-6  cursor-pointer active:bg-gray-300 transition-colors duration-300">刪除</button>
+					className="rounded-full bg-white py-1.5 px-4.5 flex items-center gap-1.5 cursor-pointer active:bg-gray-300 transition-colors duration-300">
+					<span className="font-material-symbols-rounded text-2xl">delete</span>
+					<span>刪除</span>
+				</button>
 				<button onClick={() => setView('edit')}
-					className="bg-gray-200 py-3 px-6  cursor-pointer active:bg-gray-300 transition-colors duration-300">編輯</button>
+					className="rounded-full bg-white py-1.5 px-4.5 flex items-center gap-1.5 cursor-pointer active:bg-gray-300 transition-colors duration-300">
+					<span className="font-material-symbols-rounded text-2xl">edit</span>
+					<span>編輯</span>
+				</button>
 			</div>
 		</div>
 	</>)
@@ -71,7 +77,7 @@ function Edit({ data, setView }: {
 		<div>
 			<div className="flex items-center gap-1.5">
 				<div className="size-9 flex justify-center items-center">
-					<span className="font-material-symbols-rounded text-2xl">edit_note</span>
+					<span className="font-material-symbols-rounded text-2xl">edit_square</span>
 				</div>
 				<h3 className="text-2xl">編輯任務</h3>
 			</div>
@@ -132,7 +138,7 @@ export default function TaskCard({ data }: { data: Task }) {
 	return (
 		<div data-is-completed={data.is_completed}
 			data-show={!data.is_completed || (data.is_completed && showCompleted)}
-			className="border border-gray-300 min-h-80 p-6 flex flex-col justify-between group hover:shadow-lg transition-shadow duration-700 data-[show=false]:hidden">
+			className="rounded-xl border border-gray-300 min-h-80 flex flex-col justify-between group hover:shadow-lg transition-shadow duration-700 data-[show=false]:hidden">
 			{view === 'read' && <Read setView={setView} data={data} />}
 			{view === 'edit' && <Edit setView={setView} data={data} />}
 			{view === 'delete' && <Delete setView={setView} data={data} />}
