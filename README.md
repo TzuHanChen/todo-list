@@ -12,13 +12,9 @@
 
 Next.js + Tailwind CSS + TypeScript + Material Symbols + Headless UI
 
-## 部署
-
-使用 Vercel 取得 GitHub repo 的提交紀錄、自動部署
-
 ## 相關連結
 
-[上線網站 DEMO](https://todo-list-tzuhanchen.vercel.app)：使用 Vercel 部署
+[上線網站 DEMO](https://todo-list-tzuhanchen.vercel.app)：使用 Vercel 取得 GitHub repo 的提交紀錄、自動部署
 
 [Figma 設計稿](https://www.figma.com/design/qOMq50w0AbuaNXFSReg1df/ToDo-List?node-id=17-188&t=uXS0l8xv0dF2lkYW-1)：內容包括 SEO 預覽圖、網站圖示、線框圖、元件
 
