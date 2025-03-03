@@ -19,13 +19,13 @@ function Read({ data, setView }: {
 			<div className="flex items-center gap-1.5">
 				<button onClick={() => updateTaskStatus(data.id.toString())}
 					className="size-9 flex justify-center items-center gap-1.5 cursor-pointer active:bg-gray-200 transition-colors duration-300">
-					<span className="font-material-symbols-rounded text-4xl group-data-[is-completed=true]:hidden">circle</span>
-					<span className="font-material-symbols-rounded font-variation-fill-1 text-4xl hidden group-data-[is-completed=true]:inline">check_circle</span>
+					<span className="font-material-symbols-rounded text-4xl text-teal-700 group-data-[is-completed=true]:hidden">circle</span>
+					<span className="font-material-symbols-rounded font-variation-fill-1 text-4xl text-teal-700 hidden group-data-[is-completed=true]:inline">check_circle</span>
 				</button>
-				<h3 className="text-2xl">{data.name}</h3>
+				<h3 className="text-2xl group-data-[is-completed=true]:line-through">{data.name}</h3>
 			</div>
 
-			<p className="mt-3 text-xl">{data.description}</p>
+			<p className="mt-3 text-xl group-data-[is-completed=true]:line-through">{data.description}</p>
 		</div>
 
 		<div>
@@ -34,7 +34,7 @@ function Read({ data, setView }: {
 				<p>更新時間：{updatedTimeString}</p>
 			</div>
 
-			<div className="rounded-b-xl w-full py-3 px-4.5 bg-gray-50 flex justify-end gap-3">
+			<div className="rounded-b-xl border-t border-gray-300 w-full py-3 px-4.5 bg-gray-50 flex justify-end gap-3">
 				<button onClick={() => setView('delete')}
 					className="rounded-full outline outline-gray-50 bg-white py-1.5 px-4.5 flex items-center gap-1.5 text-red-500 cursor-pointer hover:outline-red-500 active:bg-red-50 transition-colors duration-300">
 					<span className="font-material-symbols-rounded text-2xl">delete</span>
@@ -97,7 +97,7 @@ function Edit({ data, setView }: {
 			</div>
 		</div>
 
-		<div className="rounded-b-xl w-full py-3 px-4.5 bg-gray-50 flex justify-end gap-3">
+		<div className="rounded-b-xl border-t border-gray-300 w-full py-3 px-4.5 bg-gray-50 flex justify-end gap-3">
 			<button onClick={() => setView('read')}
 				className="rounded-full outline outline-gray-50 bg-white py-1.5 px-4.5 flex items-center gap-1.5 text-gray-700 cursor-pointer hover:outline-gray-700 active:bg-gray-50 transition-colors duration-300">
 				<span className="font-material-symbols-rounded text-2xl">close</span>
@@ -127,7 +127,7 @@ function Delete({ data, setView }: {
 			<p className="mt-3 text-xl">確定要刪除這個任務嗎？</p>
 		</div>
 
-		<div className="rounded-b-xl w-full py-3 px-4.5 bg-gray-50 flex justify-end gap-3">
+		<div className="rounded-b-xl border-t border-gray-300 w-full py-3 px-4.5 bg-gray-50 flex justify-end gap-3">
 			<button onClick={() => setView('read')}
 				className="rounded-full outline outline-gray-50 bg-white py-1.5 px-4.5 flex items-center gap-1.5 text-gray-700 cursor-pointer hover:outline-gray-700 active:bg-gray-50 transition-colors duration-300">
 				<span className="font-material-symbols-rounded text-2xl">close</span>
@@ -150,7 +150,7 @@ export default function TaskCard({ data }: { data: Task }) {
 	return (
 		<div data-is-completed={data.is_completed}
 			data-show={!data.is_completed || (data.is_completed && showCompleted)}
-			className="rounded-xl border border-gray-300 min-h-80 flex flex-col justify-between group hover:shadow-lg transition-shadow duration-700 data-[show=false]:hidden">
+			className="rounded-xl border border-gray-300 min-h-80 flex flex-col justify-between group hover:shadow-lg transition-shadow duration-700 data-[is-completed=true]:bg-gray-50 data-[show=false]:hidden">
 			{view === 'read' && <Read setView={setView} data={data} />}
 			{view === 'edit' && <Edit setView={setView} data={data} />}
 			{view === 'delete' && <Delete setView={setView} data={data} />}
