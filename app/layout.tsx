@@ -4,9 +4,11 @@ import Link from "next/link";
 import "./globals.css";
 
 const notoSansTc = Noto_Sans_TC({
-  variable: "--font-noto",
+  weight: ['400', '700'],
   subsets: ["latin"],
-  fallback: ["sans-serif"]
+  fallback: ["sans-serif"],
+  display: 'swap',
+  variable: "--font-noto",
 });
 
 export const metadata: Metadata = {
