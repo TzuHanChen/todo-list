@@ -31,7 +31,7 @@ export default function Home() {
 
       <div className="py-6 flex flex-col gap-6">
         <div className="flex justify-between items-center">
-          <h2 className="flex items-center gap-1.5">
+          <h2 className="flex items-center gap-2">
             <TaskIcon className="fill-gray-700" />
             <span className="text-xl">任務列表</span>
           </h2>
