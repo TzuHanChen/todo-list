@@ -25,7 +25,7 @@ export default function AddTask() {
 	}
 
 	return (
-		<Disclosure as="div" className="mx-auto rounded-xl outline outline-gray-300 w-full max-w-xl">
+		<Disclosure as="div" className="mx-auto rounded-xl border border-gray-300 w-full max-w-xl">
 			<DisclosureButton className="rounded-xl w-full py-3 px-6 flex justify-between items-center cursor-pointer group hover:bg-teal-50 active:bg-teal-50 transition-colors duration-300 data-open:rounded-b-none">
 				<h2 className="flex items-center gap-2">
 					<AddTaskIcon className="fill-teal-700" />
