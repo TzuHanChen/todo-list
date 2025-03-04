@@ -4,6 +4,7 @@ import { useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { Task } from "./type";
 import { updateTask, updateTaskStatus, deleteTask } from './actions';
+import { CheckCircleIcon, CircleIcon, CloseIcon, DeleteForeverIcon, DeleteIcon, EditSquareIcon, SaveIcon } from "./icons";
 
 function Read({ data, setView }: {
 	setView: React.Dispatch<React.SetStateAction<string>>,
@@ -19,8 +20,8 @@ function Read({ data, setView }: {
 			<div className="flex items-center gap-1.5">
 				<button onClick={() => updateTaskStatus(data.id.toString())}
 					className="size-9 flex justify-center items-center gap-1.5 cursor-pointer active:bg-gray-200 transition-colors duration-300">
-					<span className="font-material-symbols-rounded text-4xl text-teal-700 group-data-[is-completed=true]:hidden">circle</span>
-					<span className="font-material-symbols-rounded font-variation-fill-1 text-4xl text-teal-700 hidden group-data-[is-completed=true]:inline">check_circle</span>
+					<CircleIcon className="size-9 fill-teal-700 group-data-[is-completed=true]:hidden" />
+					<CheckCircleIcon className="hidden size-9 fill-teal-700 group-data-[is-completed=true]:inline" />
 				</button>
 				<h3 className="text-2xl group-data-[is-completed=true]:line-through">{data.name}</h3>
 			</div>
@@ -37,12 +38,12 @@ function Read({ data, setView }: {
 			<div className="rounded-b-xl border-t border-gray-300 w-full py-3 px-4.5 bg-gray-50 flex justify-end gap-3">
 				<button onClick={() => setView('delete')}
 					className="rounded-full outline outline-gray-50 bg-white py-1.5 px-4.5 flex items-center gap-1.5 text-red-500 cursor-pointer hover:outline-red-500 active:bg-red-50 transition-colors duration-300">
-					<span className="font-material-symbols-rounded text-2xl">delete</span>
+					<DeleteIcon className="fill-red-500" />
 					<span>刪除</span>
 				</button>
 				<button onClick={() => setView('edit')}
 					className="rounded-full outline outline-gray-50 bg-white py-1.5 px-4.5 flex items-center gap-1.5 text-blue-500 cursor-pointer hover:outline-blue-500 active:bg-blue-50 transition-colors duration-300">
-					<span className="font-material-symbols-rounded text-2xl">edit_square</span>
+					<EditSquareIcon className="fill-blue-500" />
 					<span>編輯</span>
 				</button>
 			</div>
@@ -77,7 +78,7 @@ function Edit({ data, setView }: {
 		<div className="p-4.5">
 			<div className="flex items-center gap-1.5">
 				<div className="size-9 flex justify-center items-center">
-					<span className="font-material-symbols-rounded text-2xl">edit_square</span>
+					<EditSquareIcon className="fill-gray-700" />
 				</div>
 				<h3 className="text-2xl">編輯任務</h3>
 			</div>
@@ -100,12 +101,12 @@ function Edit({ data, setView }: {
 		<div className="rounded-b-xl border-t border-gray-300 w-full py-3 px-4.5 bg-gray-50 flex justify-end gap-3">
 			<button onClick={() => setView('read')}
 				className="rounded-full outline outline-gray-50 bg-white py-1.5 px-4.5 flex items-center gap-1.5 text-gray-700 cursor-pointer hover:outline-gray-700 active:bg-gray-50 transition-colors duration-300">
-				<span className="font-material-symbols-rounded text-2xl">close</span>
+				<CloseIcon className="fill-gray-700" />
 				<span>取消</span>
 			</button>
 			<button onClick={() => handleUpdateTask()}
 				className="rounded-full outline outline-gray-50 bg-white py-1.5 px-4.5 flex items-center gap-1.5 text-blue-500 cursor-pointer hover:outline-blue-500 active:bg-blue-50 transition-colors duration-300">
-				<span className="font-material-symbols-rounded text-2xl">save</span>
+				<SaveIcon className="fill-blue-500" />
 				<span>儲存</span>
 			</button>
 		</div>
@@ -120,7 +121,7 @@ function Delete({ data, setView }: {
 		<div className="p-4.5">
 			<div className="flex items-center gap-1.5">
 				<div className="size-9 flex justify-center items-center">
-					<span className="font-material-symbols-rounded text-2xl">delete</span>
+					<DeleteIcon className="fill-gray-700" />
 				</div>
 				<h3 className="text-2xl">刪除任務</h3>
 			</div>
@@ -130,12 +131,12 @@ function Delete({ data, setView }: {
 		<div className="rounded-b-xl border-t border-gray-300 w-full py-3 px-4.5 bg-gray-50 flex justify-end gap-3">
 			<button onClick={() => setView('read')}
 				className="rounded-full outline outline-gray-50 bg-white py-1.5 px-4.5 flex items-center gap-1.5 text-gray-700 cursor-pointer hover:outline-gray-700 active:bg-gray-50 transition-colors duration-300">
-				<span className="font-material-symbols-rounded text-2xl">close</span>
+				<CloseIcon className="fill-gray-700" />
 				<span>取消</span>
 			</button>
 			<button onClick={() => deleteTask(data.id.toString())}
 				className="rounded-full outline outline-gray-50 bg-white py-1.5 px-4.5 flex items-center gap-1.5 text-red-500 cursor-pointer hover:outline-red-500 active:bg-red-50 transition-colors duration-300">
-				<span className="font-material-symbols-rounded text-2xl">delete_forever</span>
+				<DeleteForeverIcon className="fill-red-500" />
 				<span>刪除</span>
 			</button>
 		</div>

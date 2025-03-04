@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { createTask } from './actions';
+import { AddIcon, AddTaskIcon, KeyboardArrowDownIcon } from './icons';
 
 export default function AddTask() {
 	const nameRef = useRef<HTMLInputElement>(null);
@@ -27,10 +28,10 @@ export default function AddTask() {
 		<Disclosure as="div" className="mx-auto rounded-xl border border-gray-300 w-full max-w-xl">
 			<DisclosureButton className="rounded-xl w-full bg-gray-100 py-3 px-6 flex justify-between items-center cursor-pointer group hover:bg-gray-200 active:bg-gray-200 transition-colors duration-300 data-open:rounded-b-none">
 				<h2 className="flex items-center gap-1.5">
-					<span className="font-material-symbols-rounded text-2xl">add_task</span>
+					<AddTaskIcon className="fill-gray-700" />
 					<span className="text-xl">新增任務</span>
 				</h2>
-				<span className="font-material-symbols-rounded text-2xl group-data-open:rotate-180 group-data-open:transition group-data-open:duration-300">keyboard_arrow_down</span>
+				<KeyboardArrowDownIcon className="fill-gray-700 group-data-open:rotate-180 transition duration-300" />
 			</DisclosureButton>
 
 			<DisclosurePanel className="rounded-b-xl w-full pt-3 px-6 pb-6 flex flex-col gap-3">
@@ -48,7 +49,7 @@ export default function AddTask() {
 				<div className="mt-3 flex justify-end">
 					<button onClick={() => handleCreateTask()}
 						className="rounded-full outline outline-white py-1.5 px-6 flex items-center gap-1.5 text-teal-700 text-xl cursor-pointer hover:outline-teal-700 active:bg-teal-50 transition-colors duration-300">
-						<span className="font-material-symbols-rounded text-2xl">add_task</span>
+						<AddIcon className="fill-teal-700" />
 						<span>新增</span>
 					</button>
 				</div>

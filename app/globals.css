@@ -1,24 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24..36,400,0..1,0&icon_names=add_task,check_circle,circle,close,delete,delete_forever,edit_square,keyboard_arrow_down,save,task,visibility,visibility_off&display=block");
 @import "tailwindcss";
 
 @theme {
   --font-noto: var(--font-noto);
-  --material-symbols-rounded: "Material Symbols Rounded", sans-serif;
-}
-
-@utility font-material-symbols-rounded {
-  font-family: var(--material-symbols-rounded);
-  font-weight: 400;
-  font-style: normal;
-  display: inline-block;
-  line-height: 1;
-  text-transform: none;
-  letter-spacing: normal;
-  word-wrap: normal;
-  white-space: nowrap;
-  direction: ltr;
-}
-
-@utility font-variation-fill-1 {
-  font-variation-settings: 'FILL' 1;
 }

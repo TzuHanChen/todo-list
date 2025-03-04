@@ -3,6 +3,7 @@ import AddTask from "./add-task";
 import ShowCompleted from "./show-completed";
 import TaskCard, { NoTaskCard, DataError } from "./task-card";
 import { Task } from "./type";
+import { TaskIcon } from "./icons";
 
 async function TaskList() {
   const res = await fetch(process.env.BACKEND_URL + '/task', {
@@ -31,7 +32,7 @@ export default function Home() {
       <div className="py-6 flex flex-col gap-6">
         <div className="flex justify-between items-center">
           <h2 className="flex items-center gap-1.5">
-            <span className="font-material-symbols-rounded text-2xl">task</span>
+            <TaskIcon className="fill-gray-700" />
             <span className="text-xl">任務列表</span>
           </h2>
           <Suspense>
