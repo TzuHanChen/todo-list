@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Noto_Sans_TC } from "next/font/google";
-import Link from "next/link";
 import "./globals.css";
 
 const notoSansTc = Noto_Sans_TC({
@@ -28,17 +27,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="zh-TW">
       <body className={`px-6 text-gray-700 ${notoSansTc.variable} font-noto antialiased selection:bg-gray-700 selection:text-gray-200`}>
-        <div className="my-12 mx-auto shadow-md rounded-2xl border border-gray-200 w-full max-w-5xl">
-          <header className="rounded-t-2xl bg-gray-600">
-            <Link href="/" className="block w-max py-4.5 px-6">
-              <h1 className="text-3xl text-white font-bold">ToDo List</h1>
-            </Link>
-          </header>
-          {children}
-          <footer className="rounded-b-2xl bg-gray-100 py-3 px-6 text-center">
-            <p>© 2025 陳子涵</p>
-          </footer>
-        </div>
+        {children}
       </body>
     </html>
   );
