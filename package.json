@@ -6,10 +6,13 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "seed": "npx tsx -r dotenv/config scripts/seed-database.ts"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
+    "@neondatabase/serverless": "^0.10.4",
+    "dotenv": "^16.4.7",
     "next": "15.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
