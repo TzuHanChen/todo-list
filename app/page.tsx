@@ -1,10 +1,10 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import AddTask from "./add-task";
-import ShowCompleted from "./show-completed";
-import TaskCard, { NoTaskCard, DataError } from "./task-card";
+import AddTask from "./ui/add-task";
+import ShowCompleted from "./ui/show-completed";
+import TaskCard, { NoTaskCard, DataError } from "./ui/task-card";
 import { Task } from "./type";
-import { TaskIcon } from "./icons";
+import { TaskIcon } from "./ui/icons";
 
 async function TaskList() {
   const res = await fetch(process.env.BACKEND_URL + '/task', {

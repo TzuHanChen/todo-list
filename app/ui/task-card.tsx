@@ -2,8 +2,8 @@
 
 import { useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
-import { Task } from "./type";
-import { updateTask, updateTaskStatus, deleteTask } from './actions';
+import { Task } from "../type";
+import { updateTask, updateTaskStatus, deleteTask } from '../actions';
 import { CheckCircleIcon, CircleIcon, CloseIcon, DeleteForeverIcon, DeleteIcon, EditSquareIcon, ErrorIcon, SaveIcon, TaskIcon } from "./icons";
 
 function Read({ data, setView }: {
