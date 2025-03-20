@@ -22,7 +22,7 @@ export default function ShowCompleted() {
 
 	const handleToggle = (showCompleted: boolean) => {
 		setShowCompleted(showCompleted);
-		router.push(pathname + "?" + createQueryString("show-completed", showCompleted.toString()));
+		router.push(pathname + "?" + createQueryString("showCompleted", showCompleted.toString()));
 	}
 
 	return (

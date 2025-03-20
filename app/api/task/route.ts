@@ -5,7 +5,7 @@ import { sql } from "@/lib/db"
 export async function GET(request: NextRequest) {
   try {
     const searchParams = request.nextUrl.searchParams
-    const show_completed = searchParams.get("show_completed") || "all"
+    const showCompleted = searchParams.get("showCompleted") || "all"
     const sortBy = searchParams.get("sortBy") || "created_at"
     const sortOrder = searchParams.get("sortOrder") || "DESC"
     const page = Number.parseInt(searchParams.get("page") || "1")
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     const offset = (page - 1) * pageSize
 
     // Use the helper function to build and execute the query
-    const result = await buildTasksQuery(show_completed, sortBy, sortOrder, pageSize, offset)
+    const result = await buildTasksQuery(showCompleted, sortBy, sortOrder, pageSize, offset)
 
     return NextResponse.json(result)
   } catch (error) {

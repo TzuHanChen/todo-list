@@ -1,7 +1,7 @@
 import { sql } from "@/lib/db"
 
 export async function buildTasksQuery(
-  show_completed: string,
+  showCompleted: string,
   sortBy: string,
   sortOrder: string,
   pageSize: number,
@@ -15,9 +15,9 @@ export async function buildTasksQuery(
 
   // Build the WHERE clause based on type
   let whereClause = '';
-  if (show_completed === "completed") {
+  if (showCompleted === "completed") {
     whereClause = 'WHERE is_completed = true'
-  } else if (show_completed === "uncompleted") {
+  } else if (showCompleted === "uncompleted") {
     whereClause = 'WHERE is_completed = false'
   }
 
