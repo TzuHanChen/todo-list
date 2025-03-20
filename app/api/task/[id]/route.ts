@@ -12,7 +12,7 @@ async function getTaskById(id: number) {
 
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const id = Number.parseInt(params.id)
+    const id = Number.parseInt((await params).id)
     const task = await getTaskById(id)
 
     if (!task) {
@@ -28,7 +28,7 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 
 export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const id = Number.parseInt(params.id)
+    const id = Number.parseInt((await params).id)
     const body = await request.json()
     const { name, description } = body
 
@@ -69,7 +69,7 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
 
 export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const id = Number.parseInt(params.id)
+    const id = Number.parseInt((await params).id)
 
     // Check if task exists
     const existingTask = await getTaskById(id)
@@ -95,7 +95,7 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
 
 export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
   try {
-    const id = Number.parseInt(params.id)
+    const id = Number.parseInt((await params).id)
 
     // Check if task exists
     const existingTask = await getTaskById(id)

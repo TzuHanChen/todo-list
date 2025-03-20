@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { VisibilityIcon, VisibilityOffIcon } from "./ui/icons";
+import { VisibilityIcon, VisibilityOffIcon } from "./icons";
 
 export default function ShowCompleted() {
 	const router = useRouter();
