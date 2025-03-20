@@ -10,7 +10,8 @@ async function getTaskById(id: number) {
   return result.length > 0 ? result[0] : null
 }
 
-export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
+export async function GET(request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }) {
   try {
     const id = Number.parseInt((await params).id)
     const task = await getTaskById(id)
@@ -26,7 +27,8 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function PUT(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }) {
   try {
     const id = Number.parseInt((await params).id)
     const body = await request.json()
@@ -67,7 +69,8 @@ export async function PUT(request: NextRequest, { params }: { params: { id: stri
   }
 }
 
-export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
+export async function PATCH(request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }) {
   try {
     const id = Number.parseInt((await params).id)
 
@@ -93,7 +96,8 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
   }
 }
 
-export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }) {
   try {
     const id = Number.parseInt((await params).id)
 
