@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Link from "next/link";
 import AddTask from "./ui/add-task";
-import ShowCompleted from "./ui/show-completed";
+import Filter from "./ui/filter";
 import TaskList from "./ui/task-list";
 import { TaskIcon } from "./ui/icons";
 
@@ -26,7 +26,7 @@ export default function Home({ searchParams }: {
               <span className="text-xl">任務列表</span>
             </h2>
             <Suspense>
-              <ShowCompleted />
+              <Filter />
             </Suspense>
           </div>
 
