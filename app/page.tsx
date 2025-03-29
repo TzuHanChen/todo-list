@@ -1,31 +1,15 @@
 import { Suspense } from "react";
 import Link from "next/link";
-import AddTask from "./add-task";
-import ShowCompleted from "./show-completed";
-import TaskCard, { NoTaskCard, DataError } from "./task-card";
-import { Task } from "./type";
-import { TaskIcon } from "./icons";
+import AddTask from "./ui/add-task";
+import Filter from "./ui/filter";
+import { Loading } from "./ui/task-card";
+import TaskList from "./ui/task-list";
+import { TaskIcon } from "./ui/icons";
+import Sort from "./ui/sort";
 
-async function TaskList() {
-  const res = await fetch(process.env.BACKEND_URL + '/task', {
-    headers: { 'Content-Type': 'application/json; charset=utf-8' },
-    method: 'GET'
-  });
-  if (!res.ok) return <DataError />
-
-  const data = await res.json();
-  if (data.total === 0) return <NoTaskCard />
-
-  return (
-    <div className="min-h-72 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {data.data.map((task: Task) => {
-        return <TaskCard key={task.id} data={task} />
-      })}
-    </div>
-  )
-}
-
-export default function Home() {
+export default function Home({ searchParams }: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
   return (
     <div className="my-12 mx-auto shadow-md rounded-2xl border border-gray-200 w-full max-w-5xl">
       <header className="rounded-t-2xl bg-gray-600">
@@ -44,12 +28,15 @@ export default function Home() {
               <span className="text-xl">任務列表</span>
             </h2>
             <Suspense>
-              <ShowCompleted />
+              <div className="flex">
+                <Filter />
+                <Sort />
+              </div>
             </Suspense>
           </div>
 
-          <Suspense>
-            <TaskList />
+          <Suspense fallback={<Loading />}>
+            <TaskList searchParams={searchParams} />
           </Suspense>
         </div>
       </main>

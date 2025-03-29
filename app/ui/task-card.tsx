@@ -2,9 +2,9 @@
 
 import { useState, useRef } from "react";
 import { useSearchParams } from "next/navigation";
-import { Task } from "./type";
-import { updateTask, updateTaskStatus, deleteTask } from './actions';
-import { CheckCircleIcon, CircleIcon, CloseIcon, DeleteForeverIcon, DeleteIcon, EditSquareIcon, ErrorIcon, SaveIcon, TaskIcon } from "./icons";
+import { Task } from "../type";
+import { updateTask, updateTaskStatus, deleteTask } from '../actions';
+import { CheckCircleIcon, CircleIcon, CloseIcon, DeleteForeverIcon, DeleteIcon, EditSquareIcon, ErrorIcon, ProgressActivityIcon, SaveIcon, TaskIcon } from "./icons";
 
 function Read({ data, setView }: {
 	setView: React.Dispatch<React.SetStateAction<string>>,
@@ -157,6 +157,17 @@ export default function TaskCard({ data }: { data: Task }) {
 			{view === 'read' && <Read setView={setView} data={data} />}
 			{view === 'edit' && <Edit setView={setView} data={data} />}
 			{view === 'delete' && <Delete setView={setView} data={data} />}
+		</div>
+	)
+}
+
+export function Loading() {
+	return (
+		<div className="rounded-2xl border border-gray-300 min-h-72 p-6 flex flex-col justify-center items-center gap-3 group hover:shadow-lg transition-shadow duration-700">
+			<div className="rounded-full size-16 bg-gray-100 flex justify-center items-center">
+				<ProgressActivityIcon className="size-9 fill-gray-700 animate-spin" />
+			</div>
+			<p className="text-center">載入中，請稍候</p>
 		</div>
 	)
 }

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowBackIcon, NotListedLocationIcon } from "./icons";
+import { ArrowBackIcon, NotListedLocationIcon } from "./ui/icons";
 
 export default function NotFound() {
   return (

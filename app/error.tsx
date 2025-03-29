@@ -1,7 +1,7 @@
 'use client';
 
 import Link from "next/link";
-import { ArrowBackIcon, ErrorIcon } from "./icons";
+import { ArrowBackIcon, ErrorIcon } from "./ui/icons";
 
 export default function Error() {
   return (
