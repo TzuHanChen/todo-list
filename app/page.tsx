@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import Link from "next/link";
 import AddTask from "./ui/add-task";
 import Filter from "./ui/filter";
+import { Loading } from "./ui/task-card";
 import TaskList from "./ui/task-list";
 import { TaskIcon } from "./ui/icons";
 
@@ -30,7 +31,7 @@ export default function Home({ searchParams }: {
             </Suspense>
           </div>
 
-          <Suspense>
+          <Suspense fallback={<Loading />}>
             <TaskList searchParams={searchParams} />
           </Suspense>
         </div>

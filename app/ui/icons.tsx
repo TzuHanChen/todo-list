@@ -41,7 +41,7 @@ export const ErrorIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({ className =
 }
 
 export const FilterAltIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({ className = '', ...props }) => {
-  return <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f" className={className} {...props}><path d="M440-160q-17 0-28.5-11.5T400-200v-240L168-736q-15-20-4.5-42t36.5-22h560q26 0 36.5 22t-4.5 42L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-308 198-252H282l198 252Zm0 0Z"/></svg>
+  return <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f" className={className} {...props}><path d="M440-160q-17 0-28.5-11.5T400-200v-240L168-736q-15-20-4.5-42t36.5-22h560q26 0 36.5 22t-4.5 42L560-440v240q0 17-11.5 28.5T520-160h-80Zm40-308 198-252H282l198 252Zm0 0Z" /></svg>
 }
 
 export const KeyboardArrowDownIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({ className = '', ...props }) => {
@@ -50,6 +50,10 @@ export const KeyboardArrowDownIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({
 
 export const NotListedLocationIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({ className = '', ...props }) => {
   return <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f" className={className} {...props}><path d="M480-107q-14 0-28-5t-25-15q-65-60-115-117t-83.5-110.5q-33.5-53.5-51-103T160-552q0-150 96.5-239T480-880q127 0 223.5 89T800-552q0 45-17.5 94.5t-51 103Q698-301 648-244T533-127q-11 10-25 15t-28 5Zm0-213q17 0 29.5-12.5T522-362q0-17-12.5-29.5T480-404q-17 0-29.5 12.5T438-362q0 17 12.5 29.5T480-320Zm1-124q12 0 20.5-8.5T510-473q0-8 4-17.5t11-17.5q5-5 12-11.5t15-14.5q21-21 31.5-42t10.5-42q0-45-34-73.5T480-720q-34 0-63.5 17.5T373-654q-5 11-1 22.5t15 16.5q11 5 22.5 1t16.5-15q8-15 22.5-24t31.5-9q21 0 37.5 13t16.5 33q0 17-8 30t-31 32q-10 8-17 15t-12 15q-7 11-11 22t-4 21q0 14 8 25.5t22 11.5Zm-1 258q122-112 181-203.5T720-552q0-109-69.5-178.5T480-800q-101 0-170.5 69.5T240-552q0 71 59 162.5T480-186Zm0-374Z" /></svg>
+}
+
+export const ProgressActivityIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({ className = '', ...props }) => {
+  return <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f" className={className} {...props}><path d="M480-80q-82 0-155-31.5t-127.5-86Q143-252 111.5-325T80-480q0-83 31.5-155.5t86-127Q252-817 325-848.5T480-880q17 0 28.5 11.5T520-840q0 17-11.5 28.5T480-800q-133 0-226.5 93.5T160-480q0 133 93.5 226.5T480-160q133 0 226.5-93.5T800-480q0-17 11.5-28.5T840-520q17 0 28.5 11.5T880-480q0 82-31.5 155t-86 127.5q-54.5 54.5-127 86T480-80Z" /></svg>
 }
 
 export const SaveIcon: React.FC<React.SVGProps<SVGSVGElement>> = ({ className = '', ...props }) => {
