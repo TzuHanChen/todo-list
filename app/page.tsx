@@ -5,6 +5,7 @@ import Filter from "./ui/filter";
 import { Loading } from "./ui/task-card";
 import TaskList from "./ui/task-list";
 import { TaskIcon } from "./ui/icons";
+import Sort from "./ui/sort";
 
 export default function Home({ searchParams }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>
@@ -27,7 +28,10 @@ export default function Home({ searchParams }: {
               <span className="text-xl">任務列表</span>
             </h2>
             <Suspense>
-              <Filter />
+              <div className="flex">
+                <Filter />
+                <Sort />
+              </div>
             </Suspense>
           </div>
 
