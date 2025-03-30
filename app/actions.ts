@@ -1,69 +1,110 @@
 'use server';
 
+import { getBaseUrl } from '@/lib/url';
 import { revalidatePath } from 'next/cache';
 
 export async function createTask(formData: FormData) {
-	const createdAt = new Date().toISOString();
-	const payload = {
-		"name": formData.get('name'),
-		"description": formData.get('description'),
-		"is_completed": false,
-		"created_at": createdAt,
-		"updated_at": createdAt
-	};
-
 	try {
-		await fetch(process.env.BACKEND_URL + '/task', {
+		const baseUrl = getBaseUrl();
+
+		const createdAt = new Date().toISOString();
+		const payload = {
+			"name": formData.get('name'),
+			"description": formData.get('description'),
+			"is_completed": false,
+			"created_at": createdAt,
+			"updated_at": createdAt
+		};
+
+		const response = await fetch(`${baseUrl}/api/task`, {
 			headers: { 'Content-Type': 'application/json; charset=utf-8' },
 			method: 'POST',
 			body: JSON.stringify(payload)
-		})
+		});
+
+		if (!response.ok) {
+			const errorData = await response.json();
+			throw new Error(errorData.error || "Failed to create task");
+		}
+
 		revalidatePath('/');
+		return await response.json();
 	} catch (error) {
-		console.error(error);
+		console.error("Error in createTask action:", error);
+		throw error;
 	}
 }
 
 export async function updateTask(id: string, formData: FormData) {
-	const updatedAt = new Date().toISOString();
-	const payload = {
-		"name": formData.get('name'),
-		"description": formData.get('description'),
-		"updated_at": updatedAt
-	};
-
 	try {
-		await fetch(process.env.BACKEND_URL + `/task/${id}`, {
+		const baseUrl = getBaseUrl();
+
+		const updatedAt = new Date().toISOString();
+		const payload = {
+			"name": formData.get('name'),
+			"description": formData.get('description'),
+			"updated_at": updatedAt
+		};
+
+		const response = await fetch(`${baseUrl}/api/task/${id}`, {
 			headers: { 'Content-Type': 'application/json; charset=utf-8' },
 			method: 'PUT',
 			body: JSON.stringify(payload)
-		})
-		revalidatePath('/');
+		});
+
+		if (!response.ok) {
+			const errorData = await response.json();
+			throw new Error(errorData.error || "Failed to update task");
+		}
+
+		revalidatePath("/");
+		return await response.json();
 	} catch (error) {
-		console.error(error);
+		console.error("Error in updateTask action:", error);
+		throw error;
 	}
 }
 
 export async function updateTaskStatus(id: string) {
 	try {
-		await fetch(process.env.BACKEND_URL + `/task/${id}`, {
+		const baseUrl = getBaseUrl();
+
+		const response = await fetch(`${baseUrl}/api/task/${id}`, {
 			headers: { 'Content-Type': 'application/json; charset=utf-8' },
 			method: 'PATCH',
 		});
-		revalidatePath('/');
+
+		if (!response.ok) {
+			const errorData = await response.json();
+			throw new Error(errorData.error || "Failed to update task status");
+		}
+
+		revalidatePath("/");
+		return await response.json();
 	} catch (error) {
-		console.error(error);
+		console.error("Error in updateTaskStatus action:", error);
+		throw error;
 	}
 }
 
 export async function deleteTask(id: string) {
 	try {
-		await fetch(process.env.BACKEND_URL + `/task/${id}`, {
+		const baseUrl = getBaseUrl();
+
+		const response = await fetch(`${baseUrl}/api/task/${id}`, {
 			headers: { 'Content-Type': 'application/json; charset=utf-8' },
 			method: 'DELETE',
 		});
-		revalidatePath('/');
+
+		if (!response.ok && response.status !== 204) {
+			const errorData = await response.json();
+			throw new Error(errorData.error || "Failed to delete task");
+		}
+
+		revalidatePath("/");
+		return true;
 	} catch (error) {
-		console.error(error);
+		console.error("Error in deleteTask action:", error);
+		throw error;
 	}
 }

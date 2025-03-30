@@ -12,8 +12,8 @@ type SortOption = {
 }
 
 const sorts = [
-	{ id: 1, name: '新增時間 新到舊', sortBy: 'created_at', sortOrder: 'desc' },
-	{ id: 2, name: '新增時間 舊到新', sortBy: 'created_at', sortOrder: 'asc' },
+	{ id: 1, name: '創建時間 新到舊', sortBy: 'created_at', sortOrder: 'desc' },
+	{ id: 2, name: '創建時間 舊到新', sortBy: 'created_at', sortOrder: 'asc' },
 	{ id: 3, name: '更新時間 新到舊', sortBy: 'updated_at', sortOrder: 'desc' },
 	{ id: 4, name: '更新時間 舊到新', sortBy: 'updated_at', sortOrder: 'asc' },
 ]
