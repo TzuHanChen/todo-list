@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useRef } from "react";
-import { useSearchParams } from "next/navigation";
 import { Task } from "../type";
 import { updateTask, updateTaskStatus, deleteTask } from '../actions';
 import { CheckCircleIcon, CircleIcon, CloseIcon, DeleteForeverIcon, DeleteIcon, EditSquareIcon, ErrorIcon, ProgressActivityIcon, SaveIcon, TaskIcon } from "./icons";
@@ -147,13 +146,10 @@ function Delete({ data, setView }: {
 
 export default function TaskCard({ data }: { data: Task }) {
 	const [view, setView] = useState('read');
-	const searchParams = useSearchParams();
-	const showCompleted = (searchParams.get('show-completed') || 'true');
 
 	return (
 		<div data-is-completed={data.is_completed}
-			data-show={!data.is_completed || (data.is_completed && showCompleted)}
-			className="rounded-2xl border border-gray-300 min-h-72 flex flex-col justify-between group hover:shadow-lg transition-shadow duration-700 data-[is-completed=true]:bg-gray-50 data-[show=false]:hidden">
+			className="rounded-2xl border border-gray-300 min-h-72 flex flex-col justify-between group hover:shadow-lg transition-shadow duration-700 data-[is-completed=true]:bg-gray-50">
 			{view === 'read' && <Read setView={setView} data={data} />}
 			{view === 'edit' && <Edit setView={setView} data={data} />}
 			{view === 'delete' && <Delete setView={setView} data={data} />}
