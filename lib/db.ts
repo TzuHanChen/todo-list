@@ -1,6 +1,5 @@
 import { neon } from "@neondatabase/serverless"
 
-// Create a SQL client with better error handling
 export const sql = (() => {
   const databaseUrl = process.env.DATABASE_URL
 

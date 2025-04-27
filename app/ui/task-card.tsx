@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useRef } from "react";
-import { Task } from "../type";
-import { updateTask, updateTaskStatus, deleteTask } from '../actions';
+import { Task } from "../../lib/types";
+import { updateTask, updateTaskStatus, deleteTask } from '../action/task';
 import { CheckCircleIcon, CircleIcon, CloseIcon, DeleteForeverIcon, DeleteIcon, EditSquareIcon, ErrorIcon, ProgressActivityIcon, SaveIcon, TaskIcon } from "./icons";
 
 function Read({ data, setView }: {

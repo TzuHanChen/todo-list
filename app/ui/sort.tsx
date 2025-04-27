@@ -2,7 +2,7 @@
 
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react';
 import { CheckIcon, SortIcon } from "./icons";
-import { useQueryParams } from "@/hook/useQueryParams";
+import { useQueryParams } from "@/lib/hooks";
 
 type SortOption = {
 	id: number;

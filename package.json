@@ -7,16 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "seed": "npx tsx -r dotenv/config scripts/seed-database.ts"
+    "seed": "npx tsx -r dotenv/config lib/seed-database.ts"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.0",
     "@neondatabase/serverless": "^0.10.4",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
-    "next": "^15.2.3",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
+    "next": "^15.3.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
     "tsx": "^4.19.3"
   },
   "devDependencies": {

@@ -1,7 +1,5 @@
 export function getBaseUrl() {
-  return process.env.NEXT_PUBLIC_VERCEL_URL
-    || process.env.NEXT_PUBLIC_VERCEL_URL_DEV
-    || "http://localhost:3000"
+  return process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"
 }
 
 export function getQueryString(searchParams: { [key: string]: string | string[] | undefined }) {
