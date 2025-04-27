@@ -12,15 +12,18 @@
   "dependencies": {
     "@headlessui/react": "^2.2.0",
     "@neondatabase/serverless": "^0.10.4",
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
     "next": "^15.2.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "tsx": "^4.19.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/bcrypt": "^5.0.2",
+    "@types/node": "^20.17.31",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

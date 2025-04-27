@@ -17,7 +17,24 @@ export const sql = (() => {
   }
 })()
 
-// Initialize the database schema
+export async function initializeUsersTable() {
+  try {
+    await sql`
+      CREATE TABLE IF NOT EXISTS users (
+        id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+        email varchar(255) NOT NULL UNIQUE,
+        password_hash varchar(255) NOT NULL,
+        name varchar(100) NOT NULL,
+        created_at timestamp with time zone DEFAULT CURRENT_TIMESTAMP
+      )
+    `
+    console.log("Users table initialized")
+  } catch (error) {
+    console.error("Error initializing users table:", error)
+    throw error
+  }
+}
+
 export async function initializeTasksTable() {
   try {
     await sql`

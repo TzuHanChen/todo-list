@@ -1,15 +1,33 @@
 import { sql } from "@/lib/db"
-import { initializeTasksTable } from "@/lib/db"
+import { initializeUsersTable, initializeTasksTable } from "@/lib/db"
+import bcrypt from "bcrypt";
+
+async function seedUsersTable() {
+  try {
+    await initializeUsersTable()
+
+    await sql`TRUNCATE TABLE users RESTART IDENTITY`
+
+    const password = await bcrypt.hash('test', 10)
+
+    await sql`
+      INSERT INTO users (email, password_hash, name)
+      VALUES 
+        ('test@example.com', ${password}, 'test')
+    `
+
+    console.log("Users table seeded successfully")
+  } catch (error) {
+    console.error("Error seeding users table:", error)
+  }
+}
 
 async function seedTasksTable() {
   try {
-    // First ensure the table exists
     await initializeTasksTable()
 
-    // Clear existing data
     await sql`TRUNCATE TABLE tasks RESTART IDENTITY`
 
-    // Insert sample tasks
     await sql`
       INSERT INTO tasks (name, description, is_completed, created_at, updated_at)
       VALUES 
@@ -25,7 +43,11 @@ async function seedTasksTable() {
 }
 
 async function seedDatabase() {
+  await seedUsersTable()
   await seedTasksTable()
 }
 
 seedDatabase()
+  .then(() => console.log("\nDatabase seeding completed"))
+  .catch((error) => console.error("Error during database seeding:", error))
+  .finally(() => process.exit(0))

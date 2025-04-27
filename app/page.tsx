@@ -4,7 +4,7 @@ import AddTask from "./ui/add-task";
 import Filter from "./ui/filter";
 import { Loading } from "./ui/task-card";
 import TaskList from "./ui/task-list";
-import { ArrowForwardIcon, TaskIcon } from "./ui/icons";
+import { TaskIcon } from "./ui/icons";
 import Sort from "./ui/sort";
 
 export default function Home({ searchParams }: {
@@ -16,12 +16,12 @@ export default function Home({ searchParams }: {
         <Link href="/" className="block w-max py-4.5 px-6">
           <h1 className="text-3xl text-white font-bold">ToDo List</h1>
         </Link>
-        <Link href="/api" className="block w-max py-4.5 px-6">
+        {/* <Link href="/api" className="block w-max py-4.5 px-6">
           <h2 className="flex items-center gap-1.5">
             <span className="text-xl text-white">API document</span>
             <ArrowForwardIcon className="fill-white" />
           </h2>
-        </Link>
+        </Link> */}
       </header>
 
       <main className="py-12 px-6">
