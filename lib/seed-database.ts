@@ -8,12 +8,12 @@ async function seedUsersTable() {
 
     await sql`TRUNCATE TABLE users RESTART IDENTITY`
 
-    const password = await bcrypt.hash('test', 10)
+    const password_hash = await bcrypt.hash('test', 10)
 
     await sql`
       INSERT INTO users (email, password_hash, name)
       VALUES 
-        ('test@example.com', ${password}, 'test')
+        ('test@example.com', ${password_hash}, 'test')
     `
 
     console.log("Users table seeded successfully")

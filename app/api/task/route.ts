@@ -12,7 +12,6 @@ export async function GET(request: NextRequest) {
     const pageSize = 6
     const offset = (page - 1) * pageSize
 
-    // Use the helper function to build and execute the query
     const result = await buildTasksQuery(showCompleted, sortBy, sortOrder, pageSize, offset)
 
     return NextResponse.json(result)
@@ -27,7 +26,6 @@ export async function POST(request: NextRequest) {
     const body = await request.json()
     const { name, description, is_completed = false } = body
 
-    // Validate input
     if (!name) {
       return NextResponse.json({ error: "請輸入任務名稱" }, { status: 400 })
     }

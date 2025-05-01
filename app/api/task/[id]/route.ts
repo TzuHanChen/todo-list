@@ -1,7 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { sql } from "@/lib/db"
 
-// Helper function to check if task exists
 async function getTaskById(id: number) {
   const result = await sql`
     SELECT * FROM tasks WHERE id = ${id}
@@ -34,7 +33,6 @@ export async function PUT(request: NextRequest,
     const body = await request.json()
     const { name, description } = body
 
-    // Validate input
     if (!name) {
       return NextResponse.json({ error: "請輸入任務名稱" }, { status: 400 })
     }
@@ -47,7 +45,6 @@ export async function PUT(request: NextRequest,
       return NextResponse.json({ error: "任務描述長度不得超過100個字" }, { status: 400 })
     }
 
-    // Check if task exists
     const existingTask = await getTaskById(id)
     if (!existingTask) {
       return NextResponse.json({ error: "任務不存在" }, { status: 404 })
@@ -74,7 +71,6 @@ export async function PATCH(request: NextRequest,
   try {
     const id = Number.parseInt((await params).id)
 
-    // Check if task exists
     const existingTask = await getTaskById(id)
     if (!existingTask) {
       return NextResponse.json({ error: "任務不存在" }, { status: 404 })
@@ -101,7 +97,6 @@ export async function DELETE(request: NextRequest,
   try {
     const id = Number.parseInt((await params).id)
 
-    // Check if task exists
     const existingTask = await getTaskById(id)
     if (!existingTask) {
       return NextResponse.json({ error: "任務不存在" }, { status: 404 })
