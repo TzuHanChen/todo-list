@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Noto_Sans_TC } from "next/font/google";
 import "./globals.css";
+import Header from "./ui/header";
+import Footer from "./ui/footer";
 
 const notoSansTc = Noto_Sans_TC({
   weight: ['400', '700'],
@@ -26,8 +28,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="zh-TW">
-      <body className={`px-6 text-gray-700 ${notoSansTc.variable} font-noto antialiased selection:bg-gray-700 selection:text-gray-200`}>
+      <body className={`text-gray-700 ${notoSansTc.variable} font-noto antialiased selection:bg-gray-700 selection:text-gray-200`}>
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

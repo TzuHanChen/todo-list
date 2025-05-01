@@ -2,7 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
-import { createTask } from '../action/task';
+import { createTask } from '@/app/action/task';
 import { AddIcon, AddTaskIcon, KeyboardArrowDownIcon } from './icons';
 
 export default function AddTask() {
