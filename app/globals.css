@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
 @theme {
-  --font-noto: var(--font-noto);
-  --font-fira: var(--font-fira);
+  --font-noto-sans-tc: var(--font-noto-sans-tc);
+  /* --font-fira-code: var(--font-fira-code); */
 }

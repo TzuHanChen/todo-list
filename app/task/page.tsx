@@ -1,10 +1,15 @@
 import { Suspense } from "react";
+import { Metadata } from "next";
 import AddTask from "@/app/ui/add-task";
 import Filter from "@/app/ui/filter";
 import { Loading } from "@/app/ui/task-card";
 import TaskList from "@/app/ui/task-list";
 import { TaskIcon } from "@/app/ui/icons";
 import Sort from "@/app/ui/sort";
+
+export const metadata: Metadata = {
+  title: "任務列表",
+};
 
 export default function TaskPage({ searchParams }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>

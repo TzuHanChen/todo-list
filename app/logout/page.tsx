@@ -1,5 +1,10 @@
+import { Metadata } from "next";
 import Link from "next/link";
 import { LogoutIcon } from "@/app/ui/icons";
+
+export const metadata: Metadata = {
+	title: "登出",
+};
 
 export default function Logout() {
 	return (

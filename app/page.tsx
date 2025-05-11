@@ -1,5 +1,5 @@
-import Link from "next/link"
-import { CheckIcon, GridViewIcon, SortIcon } from "@/app/ui/icons"
+import Link from "next/link";
+import { CheckIcon, GridViewIcon, SortIcon } from "@/app/ui/icons";
 
 export default function Home() {
 	const featureData = [

@@ -1,4 +1,9 @@
+import { Metadata } from "next";
 import { LoginIcon } from "@/app/ui/icons";
+
+export const metadata: Metadata = {
+	title: "登入",
+};
 
 export default function Login() {
 	return (
