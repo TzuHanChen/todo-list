@@ -10,7 +10,15 @@
 
 ## 開發工具
 
-Next.js + Tailwind CSS + TypeScript + Material Symbols + Headless UI
+Next.js + Tailwind CSS + TypeScript + Material Symbols + Headless UI + Auth.js
+
+## 授權金鑰
+
+``` bash
+npx auth secret
+```
+
+上述指令產生出來的 AUTH_SECRET 要放在 .env.local
 
 ## 相關連結
 
