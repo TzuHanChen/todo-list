@@ -2,7 +2,7 @@
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { LoginIcon, ProgressActivityIcon } from "@/app/ui/icons";
-import { getBaseUrl } from "@/lib/url";
+import { getApiUrl } from "@/lib/url";
 
 type Inputs = {
 	email: string;
@@ -14,8 +14,7 @@ export default function LoginForm() {
 	const onSubmit: SubmitHandler<Inputs> = async (data) => {
 		console.log(data);
 
-		const baseUrl = getBaseUrl();
-		const res = await fetch(`${baseUrl}/api/auth/login`, {
+		const res = await fetch(getApiUrl('/api/auth/login'), {
 			headers: { 'Content-Type': 'application/json; charset=utf-8' },
 			method: 'POST',
 			body: JSON.stringify(data)
@@ -39,6 +38,7 @@ export default function LoginForm() {
 					required: "請輸入電子郵件",
 					pattern: { value: /^\S+@\S+\.\S{2,4}$/i, message: "請輸入有效的電子郵件" }
 				})}
+					autoComplete="email"
 					aria-invalid={errors.email ? "true" : "false"}
 					className="rounded-xl border border-gray-300 py-1.5 px-3 focus:outline-gray-300 invalid:outline-red-500" />
 				{errors.email &&
@@ -51,6 +51,7 @@ export default function LoginForm() {
 					required: "請輸入密碼",
 					pattern: { value: /^\S{8,20}$/, message: "密碼必須為 8 - 20 個字元" }
 				})}
+					autoComplete="current-password"
 					aria-invalid={errors.password ? "true" : "false"}
 					className="rounded-xl border border-gray-300 py-1.5 px-3 focus:outline-gray-300" />
 				{errors.password &&

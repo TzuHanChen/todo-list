@@ -1,7 +1,34 @@
 export function getBaseUrl() {
-  return process.env.NEXT_PUBLIC_VERCEL_URL
-    || process.env.NEXT_PUBLIC_VERCEL_DEV_URL
-    || "http://localhost:3000"
+  // Check if we're running in the browser
+  if (typeof window !== "undefined") {
+    // In the browser, use the current window location as the base
+    return window.location.origin
+  }
+
+  // For server-side, use environment variables
+  if (process.env.NEXT_PUBLIC_VERCEL_URL) {
+    return process.env.NEXT_PUBLIC_VERCEL_URL
+  }
+
+  if (process.env.NEXT_PUBLIC_VERCEL_DEV_URL) {
+    return process.env.NEXT_PUBLIC_VERCEL_DEV_URL
+  }
+
+  // Fallback for local development
+  return "http://localhost:3000"
+}
+
+// Helper function to create API URLs
+export function getApiUrl(path: string) {
+  const baseUrl = getBaseUrl()
+
+  // Ensure path starts with a slash
+  const normalizedPath = path.startsWith("/") ? path : `/${path}`
+
+  // Create a URL object to properly join the base and path
+  const url = new URL(normalizedPath, baseUrl)
+
+  return url.toString()
 }
 
 export function getQueryString(searchParams: { [key: string]: string | string[] | undefined }) {
