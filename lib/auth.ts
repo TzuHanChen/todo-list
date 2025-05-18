@@ -1,6 +1,21 @@
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
-// import bcrypt from "bcrypt";
+import { sql } from "./db"
+import bcrypt from "bcrypt"
+import { signInSchema } from "./zod"
+import { ZodError } from "zod"
+
+async function getUserFromDb(email: string, password: string) {
+	const result = await sql`
+		SELECT email, password_hash FROM users WHERE email = ${email}
+	`
+
+	if (result.length === 0) return null
+
+	const user = result[0]
+	const isPasswordValid = await bcrypt.compare(password, user.password_hash)
+	return isPasswordValid ? user : null
+}
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
 	providers: [
@@ -9,24 +24,21 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 				email: { type: "email", label: "Email", placeholder: "test@example.com" },
 				password: { type: "password", label: "Password", placeholder: "********" }
 			},
-			// authorize: async (credentials) => {
-			// 	 let user = null
- 
-      //   // logic to salt and hash password
-      //   const pwHash = saltAndHashPassword(credentials.password)
- 
-      //   // logic to verify if the user exists
-      //   user = await getUserFromDb(credentials.email, pwHash)
- 
-      //   if (!user) {
-      //     // No user found, so this is their first attempt to login
-      //     // Optionally, this is also the place you could do a user registration
-      //     throw new Error("Invalid credentials.")
-      //   }
- 
-      //   // return user object with their profile data
-      //   return user
-			// },
+			authorize: async (credentials) => {
+				try {
+					let user = null
+
+					const { email, password } = await signInSchema.parseAsync(credentials)
+					user = await getUserFromDb(email, password)
+
+					if (!user) {
+						throw new Error("Invalid credentials.")
+					}
+					return user
+				} catch (error) {
+					if (error instanceof ZodError) return null
+				}
+			},
 		})
 	],
 })
