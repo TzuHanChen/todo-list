@@ -1,11 +1,7 @@
-export type Task = {
-	id: number;
-	name: string;
-	description?: string;
-	is_completed: boolean;
-	created_at: Date;
-	updated_at: Date;
-}
+export type LogInFormInputs = {
+	email: string;
+	password: string;
+};
 
 export type User = {
 	id: string;
@@ -13,4 +9,13 @@ export type User = {
 	password_hash: string;
 	name: string;
 	created_at: Date;
+}
+
+export type Task = {
+	id: number;
+	name: string;
+	description?: string;
+	is_completed: boolean;
+	created_at: Date;
+	updated_at: Date;
 }

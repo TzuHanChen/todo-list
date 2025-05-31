@@ -1,27 +1,14 @@
 'use client';
 
 import { useForm, SubmitHandler } from "react-hook-form";
+import { LogInFormInputs } from "@/lib/types";
 import { LoginIcon, ProgressActivityIcon } from "@/app/ui/icons";
-import { getApiUrl } from "@/lib/url";
-
-type Inputs = {
-	email: string;
-	password: string;
-};
+import { logInWithCredentials } from "@/app/action/auth";
 
 export default function LoginForm() {
-	const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<Inputs>();
-	const onSubmit: SubmitHandler<Inputs> = async (data) => {
-		console.log(data);
-
-		const res = await fetch(getApiUrl('/api/auth/login'), {
-			headers: { 'Content-Type': 'application/json; charset=utf-8' },
-			method: 'POST',
-			body: JSON.stringify(data)
-		});
-		if (!res.ok) console.log(res);
-
-		console.log(await res.json());
+	const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<LogInFormInputs>();
+	const onSubmit: SubmitHandler<LogInFormInputs> = async (data) => {
+		await logInWithCredentials(data);
 	};
 
 	return (

@@ -1,6 +1,6 @@
 import { sql } from "@/lib/db"
 import { initializeUsersTable, initializeTasksTable } from "@/lib/db"
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 
 async function seedUsersTable() {
   try {
@@ -8,7 +8,7 @@ async function seedUsersTable() {
 
     await sql`TRUNCATE TABLE users RESTART IDENTITY`
 
-    const password_hash = await bcrypt.hash('todolist', 10)
+    const password_hash = await bcryptjs.hash('todolist', 10)
 
     await sql`
       INSERT INTO users (email, password_hash, name)

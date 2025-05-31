@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { sql } from "@/lib/db"
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 
 export async function POST(request: NextRequest) {
 	try {
@@ -21,7 +21,7 @@ export async function POST(request: NextRequest) {
 		}
 
 		const user = result[0]
-		const isPasswordValid = await bcrypt.compare(password, user.password_hash)
+		const isPasswordValid = await bcryptjs.compare(password, user.password_hash)
 		if (!isPasswordValid) {
 			return NextResponse.json({ error: "電子郵件或密碼錯誤" }, { status: 401 })
 		}
