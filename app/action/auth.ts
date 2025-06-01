@@ -9,7 +9,8 @@ import { LogInFormInputs } from "@/lib/types";
 export async function logInWithCredentials(data: LogInFormInputs) {
 	console.log(data);
 	try {
-		await signIn("credentials", data, { redirectTo: "/task" });
+		await signIn();
+		// await signIn("credentials", { redirectTo: "/task" });
 	} catch (error) {
 		if (error instanceof AuthError) {
 			return redirect(`/error?error=${error.type}`)

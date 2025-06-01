@@ -6,18 +6,6 @@ import bcryptjs from "bcryptjs"
 import { signInSchema } from "./zod"
 import { ZodError } from "zod"
 
-async function getUserFromDb(email: string, password: string) {
-	const result = await sql`
-		SELECT email, password_hash FROM users WHERE email = ${email}
-	`
-
-	if (result.length === 0) return null
-
-	const user = result[0]
-	const isPasswordValid = await bcryptjs.compare(password, user.password_hash)
-	return isPasswordValid ? user : null
-}
-
 const providers: Provider[] = [
 	Credentials({
 		credentials: {
@@ -26,13 +14,14 @@ const providers: Provider[] = [
 		},
 		authorize: async (credentials) => {
 			try {
-				let user = null
-
 				const { email, password } = await signInSchema.parseAsync(credentials)
-				user = await getUserFromDb(email, password)
-
-				if (!user) return null
-				return user
+				const result = await sql`
+					SELECT email, password_hash FROM users WHERE email = ${email}
+				`
+				if (result.length === 0) return null
+				const user = result[0]
+				const isPasswordValid = await bcryptjs.compare(password, user.password_hash)
+				return isPasswordValid ? user : null
 			} catch (error) {
 				if (error instanceof ZodError) return null
 				return null
@@ -58,9 +47,26 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 		signIn: "/login",
 		signOut: "/logout",
 		// signIn: '/auth/signin',
-    // signOut: '/auth/signout',
+		// signOut: '/auth/signout',
 		// error: '/auth/error',
-    // verifyRequest: '/auth/verify-request',
-    // newUser: '/auth/new-user'
-  }
+		// verifyRequest: '/auth/verify-request',
+		// newUser: '/auth/new-user'
+	},
+	callbacks: {
+		async redirect({ url, baseUrl }) {
+			// Allows relative callback URLs
+			if (url.startsWith("/")) return `${baseUrl}${url}`
+
+			// Allows callback URLs on the same origin
+			if (new URL(url).origin === baseUrl) return url
+
+			return baseUrl
+		},
+		// async authorized({ request, auth }) {
+		// 	console.log(request.nextUrl)
+
+		// 	// Logged in users are authenticated, otherwise redirect to login page
+		// 	return !!auth?.user
+		// },
+	},
 })
