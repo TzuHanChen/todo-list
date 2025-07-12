@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <div className="w-full h-screen flex justify-center items-center">
-      <div className="rounded-2xl border border-gray-300 min-w-72 min-h-72 p-9 flex flex-col justify-center items-center gap-3 group hover:shadow-lg transition-shadow duration-700">
+    <div className="w-full h-screen bg-gray-100 flex justify-center items-center">
+      <div className="rounded-2xl min-w-72 min-h-72 bg-white p-9 flex flex-col justify-center items-center gap-3">
         <div className="rounded-full size-16 bg-gray-100 flex justify-center items-center">
           <NotListedLocationIcon className="size-9 fill-gray-700" />
         </div>
