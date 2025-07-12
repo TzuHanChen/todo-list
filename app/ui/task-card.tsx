@@ -93,7 +93,7 @@ function Edit({ data, setView }: {
 				</label>
 				<label className="flex flex-col gap-1.5">
 					<p>描述</p>
-					<textarea name="description" defaultValue={data.description} maxLength={30} ref={descriptionRef}
+					<textarea name="description" defaultValue={data.description} maxLength={100} ref={descriptionRef}
 						className="rounded-2xl border border-gray-300 min-h-10 py-1.5 px-3 field-sizing-content"></textarea>
 				</label>
 			</div>

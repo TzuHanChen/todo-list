@@ -1,22 +1,22 @@
 import Link from "next/link";
-import { CheckIcon, GridViewIcon, SortIcon } from "@/app/ui/icons";
+import { CheckIcon, FilterAltIcon, SortIcon } from "@/app/ui/icons";
 
 export default function Home() {
 	const featureData = [
 		{
 			icon: <CheckIcon className="size-9 fill-gray-700" />,
-			title: "輕鬆追蹤",
+			title: "標記",
 			description: "簡單標記已完成的任務",
 		},
 		{
-			icon: <SortIcon className="size-9 fill-gray-700" />,
-			title: "篩選排序",
-			description: "依照不同類別排序任務",
+			icon: <FilterAltIcon className="size-9 fill-gray-700" />,
+			title: "篩選",
+			description: "依照完成與否篩選任務",
 		},
 		{
-			icon: <GridViewIcon className="size-9 fill-gray-700" />,
-			title: "切換檢視",
-			description: "自由切換卡片或清單檢視模式",
+			icon: <SortIcon className="size-9 fill-gray-700" />,
+			title: "排序",
+			description: "根據創建時間或更新時間排序任務",
 		},
 	];
 

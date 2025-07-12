@@ -1,25 +1,8 @@
 import { Metadata } from "next";
-import { Noto_Sans_TC } from "next/font/google";
-// import { Fira_Code } from "next/font/google";
+import { notoSansTc } from "./ui/fonts";
 import "./globals.css";
 import Header from "./ui/header";
 import Footer from "./ui/footer";
-
-const notoSansTc = Noto_Sans_TC({
-  weight: ['400', '700'],
-  subsets: ["latin"],
-  fallback: ["sans-serif"],
-  display: 'swap',
-  variable: "--font-noto-sans-tc",
-});
-
-// const firaCode = Fira_Code({
-//   weight: ['400', '700'],
-//   subsets: ["latin"],
-//   fallback: ["monospace"],
-//   display: 'swap',
-//   variable: "--font-fira-code",
-// });
 
 export const metadata: Metadata = {
   title: { default: "Todo List", template: "%s | Todo List" },

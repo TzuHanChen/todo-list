@@ -4,13 +4,13 @@ export default function Header() {
 	return (
 		<header className="bg-gray-600 flex justify-between items-center">
 			<Link href="/" className="block w-max py-4.5 px-6">
-				<h1 className="text-3xl text-white font-bold">ToDo List</h1>
+				<p className="text-3xl text-white font-bold">ToDo List</p>
 			</Link>
 			{/* <Link href="/api" className="block w-max py-4.5 px-6">
-				<h2 className="flex items-center gap-1.5">
-					<span className="text-xl text-white">API document</span>
+				<p className="flex items-center gap-1.5">
+					<span className="text-xl text-white">API</span>
 					<ArrowForwardIcon className="fill-white" />
-				</h2>
+				</p>
 			</Link> */}
 		</header>
 	)

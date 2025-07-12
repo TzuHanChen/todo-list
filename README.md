@@ -10,7 +10,7 @@
 
 ## 開發工具
 
-Next.js + Tailwind CSS + TypeScript + Material Symbols + Headless UI + Auth.js + Zod
+Next.js + Tailwind CSS + TypeScript + Material Symbols + Headless UI
 
 ## 授權金鑰
 
