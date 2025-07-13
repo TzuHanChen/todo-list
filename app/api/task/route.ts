@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
 
     const result = await buildTasksQuery(showCompleted, sortBy, sortOrder, pageSize, offset)
 
-    return NextResponse.json(result)
+    return NextResponse.json(result, { status: 200 })
   } catch (error) {
     console.error("Error fetching tasks:", error)
     return NextResponse.json({ error: "系統發生錯誤，請稍後再試" }, { status: 500 })
@@ -46,7 +46,7 @@ export async function POST(request: NextRequest) {
       RETURNING *
     `
 
-    return NextResponse.json(result[0])
+    return NextResponse.json(result[0], { status: 200 })
   } catch (error) {
     console.error("Error creating task:", error)
     return NextResponse.json({ error: "系統發生錯誤，請稍後再試" }, { status: 500 })

@@ -122,14 +122,21 @@ export default function APIdocument() {
 { status: 500, error: "系統發生錯誤，請稍後再試" }`} />
 				<Line />
 
-				<Method method={"POST"} description="特定任務管理" />
+				<Method method={"POST"} description="新增任務" />
 				<RequestBody requestBody={`{
   "name": '任務名稱',
   "description": '任務描述',
 }`} />
 				<ResponseExample responseExample={`{
-  status: 200, body: {}
-},
+  status: 200, body: {
+    "id": 5,
+    "name": "Task 4",
+    "description": null,
+    "is_completed": false,
+    "created_at": "2025-07-13T14:11:17.985Z",
+    "updated_at": "2025-07-13T14:11:17.985Z"
+  }
+}
 
 { status: 400, error: "請輸入任務名稱" }
 
@@ -140,7 +147,9 @@ export default function APIdocument() {
 { status: 500, error: "系統發生錯誤，請稍後再試" }`} />
 			</Route>
 
-			<Route path="/task/[id]" />
+			<Route path="/task/[id]" description="特定任務管理">
+				文件待補
+			</Route>
 		</main>
 	)
 }

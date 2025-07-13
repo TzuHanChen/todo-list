@@ -23,7 +23,7 @@ export async function createTask(formData: FormData) {
 			throw new Error(errorData.error || "Failed to create task");
 		}
 
-		revalidatePath('/');
+		revalidatePath('/task');
 		return await response.json();
 	} catch (error) {
 		console.error("Error in createTask action:", error);
@@ -53,7 +53,7 @@ export async function updateTask(id: string, formData: FormData) {
 			throw new Error(errorData.error || "Failed to update task");
 		}
 
-		revalidatePath("/");
+		revalidatePath('/task');
 		return await response.json();
 	} catch (error) {
 		console.error("Error in updateTask action:", error);
@@ -75,7 +75,7 @@ export async function updateTaskStatus(id: string) {
 			throw new Error(errorData.error || "Failed to update task status");
 		}
 
-		revalidatePath("/");
+		revalidatePath('/task');
 		return await response.json();
 	} catch (error) {
 		console.error("Error in updateTaskStatus action:", error);
@@ -97,7 +97,7 @@ export async function deleteTask(id: string) {
 			throw new Error(errorData.error || "Failed to delete task");
 		}
 
-		revalidatePath("/");
+		revalidatePath('/task');
 		return true;
 	} catch (error) {
 		console.error("Error in deleteTask action:", error);
