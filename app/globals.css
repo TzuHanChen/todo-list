@@ -2,5 +2,5 @@
 
 @theme {
   --font-noto-sans-tc: var(--font-noto-sans-tc);
-  /* --font-fira-code: var(--font-fira-code); */
+  --font-fira-code: var(--font-fira-code);
 }

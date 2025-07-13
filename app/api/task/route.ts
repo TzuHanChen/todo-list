@@ -24,25 +24,25 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { name, description, is_completed = false } = body
+    const { name, description } = body
 
     if (!name) {
       return NextResponse.json({ error: "請輸入任務名稱" }, { status: 400 })
     }
 
     if (name.length > 10) {
-      return NextResponse.json({ error: "任務名稱長度不得超過10個字" }, { status: 400 })
+      return NextResponse.json({ error: "任務名稱長度不得超過 10 個字" }, { status: 400 })
     }
 
     if (description && description.length > 100) {
-      return NextResponse.json({ error: "任務描述長度不得超過100個字" }, { status: 400 })
+      return NextResponse.json({ error: "任務描述長度不得超過 100 個字" }, { status: 400 })
     }
 
     const now = new Date().toISOString()
 
     const result = await sql`
       INSERT INTO tasks (name, description, is_completed, created_at, updated_at)
-      VALUES (${name}, ${description || null}, ${is_completed}, ${now}, ${now})
+      VALUES (${name}, ${description || null}, ${false}, ${now}, ${now})
       RETURNING *
     `
 

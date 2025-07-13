@@ -7,13 +7,9 @@ export async function createTask(formData: FormData) {
 	try {
 		const baseUrl = getBaseUrl();
 
-		const createdAt = new Date().toISOString();
 		const payload = {
 			"name": formData.get('name'),
 			"description": formData.get('description'),
-			"is_completed": false,
-			"created_at": createdAt,
-			"updated_at": createdAt
 		};
 
 		const response = await fetch(`${baseUrl}/api/task`, {
