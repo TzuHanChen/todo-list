@@ -1,24 +1,20 @@
 export function getBaseUrl() {
-  let base = '';
-
   // Check if we're running in the browser
   if (typeof window !== "undefined") {
     // In the browser, use the current window location as the base
-    base = window.location.origin
+    return window.location.origin
   }
 
   // For server-side, use environment variables
   if (process.env.NEXT_PUBLIC_VERCEL_URL) {
-    base = process.env.NEXT_PUBLIC_VERCEL_URL
+    return process.env.NEXT_PUBLIC_VERCEL_URL
   }
   if (process.env.NEXT_PUBLIC_VERCEL_DEV_URL) {
-    base = process.env.NEXT_PUBLIC_VERCEL_DEV_URL
+    return process.env.NEXT_PUBLIC_VERCEL_DEV_URL
   }
 
   // Fallback for local development
-  base = "http://localhost:3000"
-
-  return base;
+  return "http://localhost:3000"
   // return /^https?:\/\//.test(base) ? base : `https://${base}`;
 }
 
