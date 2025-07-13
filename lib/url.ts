@@ -10,7 +10,9 @@ export function getBaseUrl() {
     base = "http://localhost:3000"
   }
 
-  return /^https?:\/\//.test(base) ? base : `https://${base}`;
+  base = /^https?:\/\//.test(base) ? base : `https://${base}`;
+  console.log(base);
+  return base;
 }
 
 export function getQueryString(searchParams: { [key: string]: string | string[] | undefined }) {
