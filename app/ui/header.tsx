@@ -8,12 +8,12 @@ export default function Header() {
 				<div className="rounded-full bg-gray-100 p-1">
 					<TaskIcon className="fill-gray-700" />
 				</div>
-				<p className="text-3xl text-white font-bold">ToDo List</p>
+				<p className="text-xl text-white font-bold md:text-3xl">ToDo List</p>
 			</Link>
 
-			<nav className="flex gap-3">
-				<Link href="/task" className="block w-max p-3 text-lg text-white">任務</Link>
-				<Link href="/api" className="block w-max p-3 text-lg text-white">API</Link>
+			<nav className="flex gap-6">
+				<Link href="/task" className="block w-max py-3 text-white md:text-xl">任務</Link>
+				<Link href="/api-doc" className="block w-max py-3 text-white md:text-xl">API 文件</Link>
 			</nav>
 		</header>
 	)
