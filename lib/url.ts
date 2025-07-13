@@ -1,8 +1,9 @@
 export function getBaseUrl() {
   let base = '';
-  if (typeof window !== "undefined") {
-    base = window.location.origin
-  } else if (process.env.NEXT_PUBLIC_VERCEL_URL) {
+  // if (typeof window !== "undefined") {
+  //   base = window.location.origin
+  // } else 
+  if (process.env.NEXT_PUBLIC_VERCEL_URL) {
     base = process.env.NEXT_PUBLIC_VERCEL_URL
   } else if (process.env.NEXT_PUBLIC_VERCEL_DEV_URL) {
     base = process.env.NEXT_PUBLIC_VERCEL_DEV_URL
