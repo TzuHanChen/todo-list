@@ -1,21 +1,16 @@
 export function getBaseUrl() {
-  // Check if we're running in the browser
+  let base = '';
   if (typeof window !== "undefined") {
-    // In the browser, use the current window location as the base
-    return window.location.origin
+    base = window.location.origin
+  } else if (process.env.NEXT_PUBLIC_VERCEL_URL) {
+    base = process.env.NEXT_PUBLIC_VERCEL_URL
+  } else if (process.env.NEXT_PUBLIC_VERCEL_DEV_URL) {
+    base = process.env.NEXT_PUBLIC_VERCEL_DEV_URL
+  } else {
+    base = "http://localhost:3000"
   }
 
-  // For server-side, use environment variables
-  if (process.env.NEXT_PUBLIC_VERCEL_URL) {
-    return process.env.NEXT_PUBLIC_VERCEL_URL
-  }
-  if (process.env.NEXT_PUBLIC_VERCEL_DEV_URL) {
-    return process.env.NEXT_PUBLIC_VERCEL_DEV_URL
-  }
-
-  // Fallback for local development
-  return "http://localhost:3000"
-  // return /^https?:\/\//.test(base) ? base : `https://${base}`;
+  return /^https?:\/\//.test(base) ? base : `https://${base}`;
 }
 
 export function getQueryString(searchParams: { [key: string]: string | string[] | undefined }) {
