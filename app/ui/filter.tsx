@@ -2,7 +2,7 @@
 
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react';
 import { CheckIcon, FilterAltIcon } from "./icons";
-import { useQueryParams } from "@/hook/useQueryParams";
+import { useQueryParams } from "@/lib/hooks";
 
 type FilterOption = {
   id: number;

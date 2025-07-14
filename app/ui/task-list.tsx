@@ -1,6 +1,6 @@
 import { getBaseUrl, getQueryString } from "@/lib/url";
 import TaskCard, { NoTaskCard, DataError } from "./task-card";
-import { Task } from "@/app/type";
+import { Task } from "@/lib/types";
 
 export default async function TaskList({ searchParams }: {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>

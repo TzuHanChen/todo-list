@@ -1,18 +1,13 @@
-import type { Metadata } from "next";
-import { Noto_Sans_TC } from "next/font/google";
+import { Metadata } from "next";
+import { notoSansTc } from "./ui/fonts";
 import "./globals.css";
-
-const notoSansTc = Noto_Sans_TC({
-  weight: ['400', '700'],
-  subsets: ["latin"],
-  fallback: ["sans-serif"],
-  display: 'swap',
-  variable: "--font-noto",
-});
+import Header from "./ui/header";
+import Footer from "./ui/footer";
 
 export const metadata: Metadata = {
-  title: "Todo List",
+  title: { default: "Todo List", template: "%s | Todo List" },
   description: "實作完整 CRUD 功能的任務管理系統，可顯示或隱藏已完成的任務",
+  icons: "/icon.svg",
   openGraph: {
     type: "website",
     url: "https://todo-list-tzuhanchen.vercel.app",
@@ -26,8 +21,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="zh-TW">
-      <body className={`px-6 text-gray-700 ${notoSansTc.variable} font-noto antialiased selection:bg-gray-700 selection:text-gray-200`}>
+      <body className={`text-gray-700 ${notoSansTc.variable} font-noto-sans-tc antialiased selection:bg-gray-700 selection:text-gray-200`}>
+        <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );

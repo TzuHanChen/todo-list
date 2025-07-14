@@ -1,5 +1,19 @@
 export function getBaseUrl() {
-  return process.env.NEXT_PUBLIC_VERCEL_URL || "http://localhost:3000"
+  let base = '';
+  // if (typeof window !== "undefined") {
+  //   base = window.location.origin
+  // } else 
+  if (process.env.NEXT_PUBLIC_VERCEL_URL) {
+    base = process.env.NEXT_PUBLIC_VERCEL_URL
+  } else if (process.env.NEXT_PUBLIC_VERCEL_DEV_URL) {
+    base = process.env.NEXT_PUBLIC_VERCEL_DEV_URL
+  } else {
+    base = "http://localhost:3000"
+  }
+
+  base = /^https?:\/\//.test(base) ? base : `https://${base}`;
+  console.log(base);
+  return base;
 }
 
 export function getQueryString(searchParams: { [key: string]: string | string[] | undefined }) {

@@ -12,6 +12,14 @@
 
 Next.js + Tailwind CSS + TypeScript + Material Symbols + Headless UI
 
+## 授權金鑰
+
+``` bash
+npx auth secret
+```
+
+上述指令產生出來的 AUTH_SECRET 要放在 .env.local
+
 ## 相關連結
 
 [上線網站 DEMO](https://todo-list-tzuhanchen.vercel.app)：使用 Vercel 取得 GitHub repo 的提交紀錄、自動部署
