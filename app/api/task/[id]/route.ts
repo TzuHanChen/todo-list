@@ -38,11 +38,11 @@ export async function PUT(request: NextRequest,
     }
 
     if (name.length > 10) {
-      return NextResponse.json({ error: "任務名稱長度不得超過10個字" }, { status: 400 })
+      return NextResponse.json({ error: "任務名稱長度不得超過 10 個字" }, { status: 400 })
     }
 
     if (description && description.length > 100) {
-      return NextResponse.json({ error: "任務描述長度不得超過100個字" }, { status: 400 })
+      return NextResponse.json({ error: "任務描述長度不得超過 100 個字" }, { status: 400 })
     }
 
     const existingTask = await getTaskById(id)
