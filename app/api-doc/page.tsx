@@ -54,8 +54,20 @@ function SearchParams({ searchParams }: { searchParams?: string[] }) {
 			<p className="mb-2 font-medium">SearchParams</p>
 			<pre className="overflow-x-auto rounded-lg bg-gray-50 py-2 px-4">
 				{searchParams
-					? searchParams.map((params, index) => <p key={index}>{params}</p>)
+					? searchParams.map((searchParam, index) => <p key={index}>{searchParam}</p>)
 					: 'No searchParams'}</pre>
+		</div>
+	)
+}
+
+function Params({ params }: { params?: string[] }) {
+	return (
+		<div>
+			<p className="mb-2 font-medium">Params</p>
+			<pre className="overflow-x-auto rounded-lg bg-gray-50 py-2 px-4">
+				{params
+					? params.map((param, index) => <p key={index}>{param}</p>)
+					: 'No Params'}</pre>
 		</div>
 	)
 }
@@ -106,7 +118,8 @@ export default function APIdocument() {
 					'sortBy: "created_at" | "updated_at"',
 					'sortOrder: "ASC" | "DESC"',
 					'page: number']} />
-				<ResponseExample responseExample={`{
+				<ResponseExample responseExample={
+`{
   status: 200, body: [
     {
       "id": 1,
@@ -117,19 +130,21 @@ export default function APIdocument() {
       "updated_at": "2025-05-11T15:04:20.686Z"
     },
   ]
-},
+}
 
 { status: 500, error: "系統發生錯誤，請稍後再試" }`} />
 				<Line />
 
 				<Method method={"POST"} description="新增任務" />
-				<RequestBody requestBody={`{
+				<RequestBody requestBody={
+`{
   "name": '任務名稱',
   "description": '任務描述',
 }`} />
-				<ResponseExample responseExample={`{
+				<ResponseExample responseExample={
+`{
   status: 200, body: {
-    "id": 5,
+    "id": 4,
     "name": "Task 4",
     "description": null,
     "is_completed": false,
@@ -148,7 +163,80 @@ export default function APIdocument() {
 			</Route>
 
 			<Route path="/task/[id]" description="特定任務管理">
-				文件待補
+				<Method method="GET" description="取得單一任務資料" />
+				<Params params={['id: number']} />
+				<ResponseExample responseExample={
+`{
+  status: 200, body: {
+    "id": 1,
+    "name": "Task 1",
+    "description": "Description for task 1",
+    "is_completed": false,
+    "created_at": "2025-05-11T15:04:20.686Z",
+    "updated_at": "2025-05-11T15:04:20.686Z"
+  }
+}
+
+{ status: 500, error: "系統發生錯誤，請稍後再試" }`} />
+				<Line />
+
+				<Method method="PUT" description="更新任務名稱和描述" />
+				<Params params={['id: number']} />
+				<RequestBody requestBody={
+`{
+  "name": '任務名稱',
+  "description": '任務描述',
+}`} />
+				<ResponseExample responseExample={
+`{
+  status: 200, body: {
+    id: 4,
+    name: 'Task 4',
+    description: 'Description for task 4',
+    is_completed: false,
+    created_at: 2025-07-14T15:25:19.282Z,
+    updated_at: 2025-07-14T15:26:01.017Z
+  }
+}
+
+{ status: 400, error: "請輸入任務名稱" }
+
+{ status: 400, error: "任務名稱長度不得超過 10 個字" }
+
+{ status: 400, error: "任務描述長度不得超過 100 個字" }
+
+{ status: 404, error: "任務不存在" }
+
+{ status: 500, error: "系統發生錯誤，請稍後再試" }`} />
+				<Line />
+
+				<Method method="PATCH" description="更新任務完成與否" />
+				<Params params={['id: number']} />
+				<ResponseExample responseExample={
+`{
+  status: 200, body: {
+    id: 4,
+    name: 'Task 4',
+    description: 'Description for task 4',
+    is_completed: true,
+    created_at: 2025-07-14T15:25:19.282Z,
+    updated_at: 2025-07-14T15:26:01.017Z
+  }
+}
+
+{ status: 404, error: "任務不存在" }
+
+{ status: 500, error: "系統發生錯誤，請稍後再試" }`} />
+				<Line />
+
+				<Method method="DELETE" description="刪除任務" />
+				<Params params={['id: number']} />
+				<ResponseExample responseExample={
+`{ status: 204, body: null }
+
+{ status: 404, error: "任務不存在" }
+
+{ status: 500, error: "系統發生錯誤，請稍後再試" }`} />
 			</Route>
 		</main>
 	)
