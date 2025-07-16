@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/TzuHanChen/todo-list/raw/main/app/icon.svg" alt="圖示" />
+  <img src="https://raw.githubusercontent.com/TzuHanChen/todo-list/a8077a2f01e98c643dbbf12f3d36551d83b46a05/public/icon.svg" alt="ToDo List 圖示" />
 </p>
 
 <h1 align="center">ToDo List</h1>
@@ -8,22 +8,38 @@
 
 ![截圖](/public/screenshot.png)
 
+## 專案簡介
+
+* 任務管理：新增、檢視、編輯、刪除、標記完成 / 未完成
+* 篩選：顯示所有 / 已完成 / 未完成的任務
+* 排序：根據創建時間 / 更新時間、舊到新 / 新到舊排序
+
 ## 開發工具
 
-Next.js + Tailwind CSS + TypeScript + Material Symbols + Headless UI
+* 前端：使用 Next.js App router + Tailwind CSS + TypeScript + Material Symbols + Headless UI 實作頁面與功能，使用 Server Actions 串接 REST API
+* 後端：使用 Next.js route handler 實作 REST API 連接 Neon Serverless PostgreSQL
+* 部署：使用 Vercel 取得 GitHub repository 的提交紀錄、自動部署
 
-## 授權金鑰
+## 相關連結
+
+[上線網站 DEMO](https://todo-list-tzuhanchen.vercel.app)：首頁、任務頁面、API 文件頁面
+
+[Figma 設計稿](https://www.figma.com/design/qOMq50w0AbuaNXFSReg1df/ToDo-List?node-id=17-188&t=uXS0l8xv0dF2lkYW-1)：SEO 預覽圖、網站圖示、線框圖、元件
+
+[Meta Tags](https://metatags.io/?url=https%3A%2F%2Ftodo-list-tzuhanchen.vercel.app)：可測試各項 SEO 資訊
+
+## 未來規劃
+
+* 搜尋任務
+* 清除篩選 / 排序 / 搜尋條件
+* 前端所有表單使用 React Hook Form 處理格式驗證、即時顯示錯誤訊息、顯示正在提交狀態
+* 後端所有 API 加入 Zod 處理格式驗證、錯誤訊息
+* 新增使用者登入 / 登出功能
+
+<!-- ## 授權金鑰
 
 ``` bash
 npx auth secret
 ```
 
-上述指令產生出來的 AUTH_SECRET 要放在 .env.local
-
-## 相關連結
-
-[上線網站 DEMO](https://todo-list-tzuhanchen.vercel.app)：使用 Vercel 取得 GitHub repo 的提交紀錄、自動部署
-
-[Figma 設計稿](https://www.figma.com/design/qOMq50w0AbuaNXFSReg1df/ToDo-List?node-id=17-188&t=uXS0l8xv0dF2lkYW-1)：內容包括 SEO 預覽圖、網站圖示、線框圖、元件
-
-[Meta Tags](https://metatags.io/?url=https%3A%2F%2Ftodo-list-tzuhanchen.vercel.app)：可測試各項 SEO 資訊
+上述指令產生出來的 AUTH_SECRET 要放在 .env.local -->

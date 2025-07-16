@@ -17,13 +17,13 @@ function Route({ path, description, children }: {
 }
 
 function Method({ method, description }: {
-	method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE',
+	method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'OPTIONS' | 'HEAD',
 	description?: string,
 }) {
 	let methodTag = <></>
 	switch (method) {
 		case 'GET':
-			methodTag = <span className="rounded-full bg-blue-100 py-2 px-4 text-blue-800 font-bold">{method}</span>
+			methodTag = <span className="rounded-full bg-sky-100 py-2 px-4 text-sky-800 font-bold">{method}</span>
 			break;
 		case "POST":
 			methodTag = <span className="rounded-full bg-green-100 py-2 px-4 text-green-800 font-bold">{method}</span>
@@ -32,10 +32,16 @@ function Method({ method, description }: {
 			methodTag = <span className="rounded-full bg-orange-100 py-2 px-4 text-orange-800 font-bold">{method}</span>
 			break;
 		case "PATCH":
-			methodTag = <span className="rounded-full bg-cyan-100 py-2 px-4 text-cyan-800 font-bold">{method}</span>
+			methodTag = <span className="rounded-full bg-teal-100 py-2 px-4 text-teal-800 font-bold">{method}</span>
 			break;
 		case "DELETE":
 			methodTag = <span className="rounded-full bg-red-100 py-2 px-4 text-red-800 font-bold">{method}</span>
+			break;
+		case "OPTIONS":
+			methodTag = <span className="rounded-full bg-indigo-100 py-2 px-4 text-indigo-800 font-bold">{method}</span>
+			break;
+		case "HEAD":
+			methodTag = <span className="rounded-full bg-purple-100 py-2 px-4 text-purple-800 font-bold">{method}</span>
 			break;
 		default:
 			break;
@@ -119,7 +125,7 @@ export default function APIdocument() {
 					'sortOrder: "ASC" | "DESC"',
 					'page: number']} />
 				<ResponseExample responseExample={
-`{
+					`{
   status: 200, body: [
     {
       "id": 1,
@@ -137,12 +143,12 @@ export default function APIdocument() {
 
 				<Method method={"POST"} description="新增任務" />
 				<RequestBody requestBody={
-`{
-  "name": '任務名稱',
-  "description": '任務描述',
+					`{
+  "name": "任務名稱",
+  "description": "任務描述",
 }`} />
 				<ResponseExample responseExample={
-`{
+					`{
   status: 200, body: {
     "id": 4,
     "name": "Task 4",
@@ -166,7 +172,7 @@ export default function APIdocument() {
 				<Method method="GET" description="取得單一任務資料" />
 				<Params params={['id: number']} />
 				<ResponseExample responseExample={
-`{
+					`{
   status: 200, body: {
     "id": 1,
     "name": "Task 1",
@@ -183,12 +189,12 @@ export default function APIdocument() {
 				<Method method="PUT" description="更新任務名稱和描述" />
 				<Params params={['id: number']} />
 				<RequestBody requestBody={
-`{
+					`{
   "name": '任務名稱',
   "description": '任務描述',
 }`} />
 				<ResponseExample responseExample={
-`{
+					`{
   status: 200, body: {
     id: 4,
     name: 'Task 4',
@@ -213,7 +219,7 @@ export default function APIdocument() {
 				<Method method="PATCH" description="更新任務完成與否" />
 				<Params params={['id: number']} />
 				<ResponseExample responseExample={
-`{
+					`{
   status: 200, body: {
     id: 4,
     name: 'Task 4',
@@ -232,7 +238,7 @@ export default function APIdocument() {
 				<Method method="DELETE" description="刪除任務" />
 				<Params params={['id: number']} />
 				<ResponseExample responseExample={
-`{ status: 204, body: null }
+					`{ status: 204, body: null }
 
 { status: 404, error: "任務不存在" }
 
