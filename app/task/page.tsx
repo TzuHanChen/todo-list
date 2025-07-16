@@ -1,10 +1,10 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
-import AddTask from "@/app/ui/add-task";
-import Filter from "@/app/ui/filter";
-import Sort from "@/app/ui/sort";
-import { Loading } from "@/app/ui/task-card";
-import TaskList from "@/app/ui/task-list";
+import AddTask from "./add-task";
+import Filter from "./filter";
+import Sort from "./sort";
+import { Loading } from "./task-card";
+import TaskList from "./task-list";
 
 export const metadata: Metadata = {
   title: "任務列表",

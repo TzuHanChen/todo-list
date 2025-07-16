@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { Task } from "@/lib/types";
 import { updateTask, updateTaskStatus, deleteTask } from '@/app/action/task';
-import { CheckCircleIcon, CircleIcon, CloseIcon, DeleteForeverIcon, DeleteIcon, EditSquareIcon, ErrorIcon, ProgressActivityIcon, SaveIcon, TaskIcon } from "./icons";
+import { CheckCircleIcon, CircleIcon, CloseIcon, DeleteForeverIcon, DeleteIcon, EditSquareIcon, ErrorIcon, ProgressActivityIcon, SaveIcon, TaskIcon } from "@/app/ui/icons";
 
 function Read({ data, setView }: {
 	setView: React.Dispatch<React.SetStateAction<string>>,
