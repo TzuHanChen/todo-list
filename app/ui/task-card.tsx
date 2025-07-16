@@ -149,7 +149,7 @@ export default function TaskCard({ data }: { data: Task }) {
 
 	return (
 		<div data-is-completed={data.is_completed}
-			className="rounded-2xl border border-gray-300 min-h-72 flex flex-col justify-between group hover:shadow-lg transition-shadow duration-700 data-[is-completed=true]:bg-gray-50">
+			className="rounded-2xl border border-gray-300 min-h-72 bg-white flex flex-col justify-between group hover:shadow-lg transition-shadow duration-700 data-[is-completed=true]:bg-gray-50">
 			{view === 'read' && <Read setView={setView} data={data} />}
 			{view === 'edit' && <Edit setView={setView} data={data} />}
 			{view === 'delete' && <Delete setView={setView} data={data} />}
@@ -159,7 +159,7 @@ export default function TaskCard({ data }: { data: Task }) {
 
 export function Loading() {
 	return (
-		<div className="rounded-2xl border border-gray-300 min-h-72 p-6 flex flex-col justify-center items-center gap-3 group hover:shadow-lg transition-shadow duration-700">
+		<div className="rounded-2xl border border-gray-300 min-h-72 bg-white p-6 flex flex-col justify-center items-center gap-3 group hover:shadow-lg transition-shadow duration-700">
 			<div className="rounded-full size-16 bg-gray-100 flex justify-center items-center">
 				<ProgressActivityIcon className="size-9 fill-gray-700 animate-spin" />
 			</div>
@@ -170,7 +170,7 @@ export function Loading() {
 
 export function NoTaskCard() {
 	return (
-		<div className="rounded-2xl border border-gray-300 min-h-72 p-6 flex flex-col justify-center items-center gap-3 group hover:shadow-lg transition-shadow duration-700">
+		<div className="rounded-2xl border border-gray-300 min-h-72 bg-white p-6 flex flex-col justify-center items-center gap-3 group hover:shadow-lg transition-shadow duration-700">
 			<div className="rounded-full size-16 bg-gray-100 flex justify-center items-center">
 				<TaskIcon className="size-9 fill-gray-700" />
 			</div>
@@ -181,7 +181,7 @@ export function NoTaskCard() {
 
 export function DataError() {
 	return (
-		<div className="rounded-2xl border border-gray-300 min-h-72 p-6 flex flex-col justify-center items-center gap-3 group hover:shadow-lg transition-shadow duration-700">
+		<div className="rounded-2xl border border-gray-300 min-h-72 p-6 bg-white flex flex-col justify-center items-center gap-3 group hover:shadow-lg transition-shadow duration-700">
 			<div className="rounded-full size-16 bg-gray-100 flex justify-center items-center">
 				<ErrorIcon className="size-9 fill-gray-700" />
 			</div>

@@ -25,7 +25,7 @@ export default function AddTask() {
 	}
 
 	return (
-		<Disclosure as="div" className="mx-auto rounded-xl border border-gray-300 w-full max-w-xl">
+		<Disclosure as="div" className="mx-auto rounded-xl border border-gray-300 w-full max-w-xl bg-white">
 			<DisclosureButton className="rounded-xl w-full py-3 px-6 flex justify-between items-center cursor-pointer group hover:bg-teal-50 active:bg-teal-50 transition-colors duration-300 data-open:rounded-b-none">
 				<h2 className="flex items-center gap-2">
 					<AddTaskIcon className="fill-teal-700" />
@@ -43,7 +43,7 @@ export default function AddTask() {
 				</label>
 				<label className="flex flex-col gap-1.5">
 					<p>描述</p>
-					<textarea name="description" maxLength={30} ref={descriptionRef}
+					<textarea name="description" maxLength={100} ref={descriptionRef}
 						className="rounded-2xl border border-gray-300 min-h-10 py-1.5 px-3 field-sizing-content"></textarea>
 				</label>
 				<div className="mt-3 flex justify-end">
