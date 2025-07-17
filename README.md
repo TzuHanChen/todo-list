@@ -16,9 +16,20 @@
 
 ## 開發工具
 
-* 前端：使用 Next.js App router + Tailwind CSS + TypeScript + Material Symbols + Headless UI 實作頁面與功能，使用 Server Actions 串接 REST API
-* 後端：使用 Next.js route handler 實作 REST API 連接 Neon Serverless PostgreSQL
-* 部署：使用 Vercel 取得 GitHub repository 的提交紀錄、自動部署
+前端
+
+* 使用 Next.js (App Router) + TypeScript + Tailwind CSS + Headless UI + Material Symbols 製作頁面與功能邏輯
+* 使用 Server Actions 串接自行實作的 REST API
+
+後端
+
+* 使用 TypeScript 撰寫 SQL 腳本，連接 Neon Serverless PostgreSQL 建立資料表並新增初始資料
+* 使用 Next.js route handler 實作 REST API
+
+版本控制與部署
+
+* 使用 GitHub 管理版本與專案開發流程
+* 透過 Vercel 部署專案，並自動取得 GitHub 提交紀錄進行 CI/CD 部署
 
 ## 相關連結
 
