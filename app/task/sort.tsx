@@ -1,7 +1,7 @@
 'use client';
 
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react';
-import { CheckIcon, SortIcon } from "./icons";
+import { CheckIcon, SortIcon } from "@/app/ui/icons";
 import { useQueryParams } from "@/lib/hooks";
 
 type SortOption = {

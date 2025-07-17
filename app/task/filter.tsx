@@ -1,7 +1,7 @@
 'use client';
 
 import { Listbox, ListboxButton, ListboxOption, ListboxOptions } from '@headlessui/react';
-import { CheckIcon, FilterAltIcon } from "./icons";
+import { CheckIcon, FilterAltIcon } from "@/app/ui/icons";
 import { useQueryParams } from "@/lib/hooks";
 
 type FilterOption = {

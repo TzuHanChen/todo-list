@@ -3,7 +3,7 @@
 import { useRef, useState } from 'react';
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react';
 import { createTask } from '@/app/action/task';
-import { AddIcon, AddTaskIcon, KeyboardArrowDownIcon } from './icons';
+import { AddIcon, AddTaskIcon, KeyboardArrowDownIcon } from '@/app/ui/icons';
 
 export default function AddTask() {
 	const nameRef = useRef<HTMLInputElement>(null);
