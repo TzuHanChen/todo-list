@@ -23,7 +23,7 @@
 
 後端
 
-* 使用 TypeScript 撰寫 SQL 腳本，連接 Neon Serverless PostgreSQL 建立資料表並新增初始資料
+* 使用 TypeScript + SQL 撰寫腳本，連接 Neon Serverless PostgreSQL 建立資料表並新增初始資料
 * 使用 Next.js route handler 實作 REST API
 
 版本控制與部署

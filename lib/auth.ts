@@ -1,7 +1,7 @@
 import NextAuth from "next-auth"
 import Credentials from "next-auth/providers/credentials"
 import type { Provider } from "next-auth/providers"
-import { sql } from "./db"
+import { sql } from "./db-init"
 import bcryptjs from "bcryptjs"
 import { signInSchema } from "./zod"
 import { ZodError } from "zod"
