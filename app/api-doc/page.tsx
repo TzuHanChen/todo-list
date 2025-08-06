@@ -2,7 +2,7 @@ import { firaCode } from "@/app/ui/fonts";
 
 function PathMethodList() {
 	return (
-		<div className="shadow-sm rounded-2xl h-max bg-white p-6 flex flex-col gap-3 lg:sticky lg:top-6">
+		<section className="shadow-sm rounded-2xl h-max bg-white p-6 flex flex-col gap-3 lg:sticky lg:top-6">
 			<p className="font-medium">目錄</p>
 			<div className="border border-gray-200">
 				<a className="bg-gray-100 p-3 flex items-center gap-3" href="#api-task">
@@ -26,7 +26,7 @@ function PathMethodList() {
 					<Method method="DELETE" description="刪除任務" />
 				</div>
 			</div>
-		</div>
+		</section>
 	)
 }
 
@@ -85,42 +85,29 @@ function Method({ method, description }: {
 	)
 }
 
-function TextBlock({ children }: { children?: React.ReactNode }) {
-	return (
-		<pre className="rounded-lg bg-gray-50 py-2 px-4">{children}</pre>
-	)
-}
+type Parameter = { name: string, type: string, required: boolean, rule: string };
 
-type Parameter = { name: string, type: string, rule: string };
-
-function ParametersTable({ parameters }: {
-	parameters: Parameter[]
-}) {
+function ParametersTable({ parameters }: { parameters: Parameter[] }) {
 	return (
 		<div className="w-full overflow-x-auto">
 			<table className="text-left [&_th]:border [&_th]:border-gray-200 [&_th]:bg-gray-100 [&_th]:py-2 [&_th]:px-4 [&_th]:font-medium [&_td]:border [&_td]:border-gray-200 [&_td]:py-2 [&_td]:px-4">
 				<thead>
 					<tr>
-						<th>參數名稱</th><th>類型</th><th>限制</th>
+						<th>參數名稱</th><th>類型</th><th>必要</th><th>限制</th>
 					</tr>
 				</thead>
 				<tbody>
 					{parameters.map((param, index) =>
-					(
 						<tr key={index}>
-							<td>{param.name}</td><td>{param.type}</td><td>{param.rule}</td>
+							<td>{param.name}</td>
+							<td>{param.type}</td>
+							<td>{param.required && '＊'}</td>
+							<td>{param.rule}</td>
 						</tr>
-					)
 					)}
 				</tbody>
 			</table>
 		</div>
-	)
-}
-
-function CodeBlock({ children }: { children?: React.ReactNode }) {
-	return (
-		<pre className="overflow-x-auto bg-gray-900 p-4 rounded-lg text-gray-100">{children}</pre>
 	)
 }
 
@@ -133,11 +120,11 @@ function SearchParams({ searchParams }: { searchParams: Parameter[] }) {
 	)
 }
 
-function Params({ params }: { params: string[] }) {
+function Params({ params }: { params: Parameter[] }) {
 	return (
 		<div>
 			<p className="mb-2 font-medium">Params</p>
-			<TextBlock>{params.map((param, index) => <p key={index}>{param}</p>)}</TextBlock>
+			<ParametersTable parameters={params} />
 		</div>
 	)
 }
@@ -149,6 +136,14 @@ function RequestBody({ requestBody }: { requestBody: Parameter[] }) {
 			<ParametersTable parameters={requestBody} />
 		</div>
 	)
+}
+
+function TextBlock({ children }: { children?: React.ReactNode }) {
+	return <div className="rounded-lg bg-gray-50 p-4">{children}</div>
+}
+
+function CodeBlock({ children }: { children?: React.ReactNode }) {
+	return <pre className="rounded-lg overflow-x-auto bg-gray-800 p-4 text-gray-200">{children}</pre>
 }
 
 // function RequestExample() {
@@ -169,35 +164,39 @@ function Line() {
 }
 
 function Paths() {
-	return (
-		<div className="grow flex flex-col gap-6">
-			<Path path={"/task"} description="任務管理">
-				<Method method={"GET"} description="取得所有任務資料" />
-				<SearchParams searchParams={[
-					{
-						name: 'showCompleted',
-						type: 'string',
-						rule: '"completed" | "uncompleted" | "all"'
-					},
-					{
-						name: 'sortBy',
-						type: 'string',
-						rule: '"created_at" | "updated_at"'
-					},
-					{
-						name: 'sortOrder',
-						type: 'string',
-						rule: '"asc" | "desc"'
-					},
-					{
-						name: 'page',
-						type: 'number',
-						rule: ''
-					},
-				]} />
-				<TextBlock>預設查詢條件：顯示所有任務、根據創建時間新到舊排序</TextBlock>
-				<ResponseExample responseExample={
-					`{
+	return (<>
+		<Path path="/task" description="任務管理">
+			<Method method={"GET"} description="取得所有任務資料" />
+			<SearchParams searchParams={[
+				{
+					name: 'showCompleted',
+					type: 'string',
+					required: false,
+					rule: '"all" | "completed" | "uncompleted"'
+				},
+				{
+					name: 'sortBy',
+					type: 'string',
+					required: false,
+					rule: '"created_at" | "updated_at"'
+				},
+				{
+					name: 'sortOrder',
+					type: 'string',
+					required: false,
+					rule: '"desc" | "asc"'
+				},
+			]} />
+			<TextBlock>
+				<p>預設查詢條件：</p>
+				<ol className="pl-5 list-disc *:mt-1">
+					<li>showCompleted=all　顯示所有任務</li>
+					<li>sortBy=created_at　根據創建時間排序</li>
+					<li>sortOrder=desc　降序排列 (從新到舊)</li>
+				</ol>
+			</TextBlock>
+			<ResponseExample responseExample={
+				`{
   status: 200, body: [
     {
       "id": 1,
@@ -211,23 +210,25 @@ function Paths() {
 }
 
 { status: 500, error: "系統發生錯誤，請稍後再試" }`} />
-				<Line />
+			<Line />
 
-				<Method method={"POST"} description="新增任務" />
-				<RequestBody requestBody={[
-					{
-						name: 'name',
-						type: 'string',
-						rule: '必填，最多 10 個字'
-					},
-					{
-						name: 'description',
-						type: 'string',
-						rule: '選填，最多 100 個字'
-					},
-				]} />
-				<ResponseExample responseExample={
-					`{
+			<Method method={"POST"} description="新增任務" />
+			<RequestBody requestBody={[
+				{
+					name: 'name',
+					type: 'string',
+					required: true,
+					rule: '最多 10 個字'
+				},
+				{
+					name: 'description',
+					type: 'string',
+					required: false,
+					rule: '最多 100 個字'
+				},
+			]} />
+			<ResponseExample responseExample={
+				`{
   status: 200, body: {
     "id": 4,
     "name": "Task 4",
@@ -245,13 +246,20 @@ function Paths() {
 { status: 400, error: "任務描述長度不得超過 100 個字" }
 
 { status: 500, error: "系統發生錯誤，請稍後再試" }`} />
-			</Path>
+		</Path>
 
-			<Path path="/task/[id]" description="特定任務管理">
-				<Method method="GET" description="取得單一任務資料" />
-				<Params params={['id: number']} />
-				<ResponseExample responseExample={
-					`{
+		<Path path="/task/[id]" description="特定任務管理">
+			<Method method="GET" description="取得單一任務資料" />
+			<Params params={[
+				{
+					name: 'id',
+					type: 'number',
+					required: true,
+					rule: ''
+				},
+			]} />
+			<ResponseExample responseExample={
+				`{
   status: 200, body: {
     "id": 1,
     "name": "Task 1",
@@ -262,25 +270,36 @@ function Paths() {
   }
 }
 
-{ status: 500, error: "系統發生錯誤，請稍後再試" }`} />
-				<Line />
+{ status: 404, error: "任務不存在" }
 
-				<Method method="PUT" description="更新任務名稱和描述" />
-				<Params params={['id: number']} />
-				<RequestBody requestBody={[
-					{
-						name: 'name',
-						type: 'string',
-						rule: '必填，最多 10 個字'
-					},
-					{
-						name: 'description',
-						type: 'string',
-						rule: '選填，最多 100 個字'
-					},
-				]} />
-				<ResponseExample responseExample={
-					`{
+{ status: 500, error: "系統發生錯誤，請稍後再試" }`} />
+			<Line />
+
+			<Method method="PUT" description="更新任務名稱和描述" />
+			<Params params={[
+				{
+					name: 'id',
+					type: 'number',
+					required: true,
+					rule: ''
+				},
+			]} />
+			<RequestBody requestBody={[
+				{
+					name: 'name',
+					type: 'string',
+					required: true,
+					rule: '最多 10 個字'
+				},
+				{
+					name: 'description',
+					type: 'string',
+					required: false,
+					rule: '最多 100 個字'
+				},
+			]} />
+			<ResponseExample responseExample={
+				`{
   status: 200, body: {
     id: 4,
     name: 'Task 4',
@@ -300,12 +319,19 @@ function Paths() {
 { status: 404, error: "任務不存在" }
 
 { status: 500, error: "系統發生錯誤，請稍後再試" }`} />
-				<Line />
+			<Line />
 
-				<Method method="PATCH" description="更新任務完成與否" />
-				<Params params={['id: number']} />
-				<ResponseExample responseExample={
-					`{
+			<Method method="PATCH" description="更新任務完成與否" />
+			<Params params={[
+				{
+					name: 'id',
+					type: 'number',
+					required: true,
+					rule: ''
+				},
+			]} />
+			<ResponseExample responseExample={
+				`{
   status: 200, body: {
     id: 4,
     name: 'Task 4',
@@ -319,36 +345,42 @@ function Paths() {
 { status: 404, error: "任務不存在" }
 
 { status: 500, error: "系統發生錯誤，請稍後再試" }`} />
-				<Line />
+			<Line />
 
-				<Method method="DELETE" description="刪除任務" />
-				<Params params={['id: number']} />
-				<ResponseExample responseExample={
-					`{ status: 204, body: null }
+			<Method method="DELETE" description="刪除任務" />
+			<Params params={[
+				{
+					name: 'id',
+					type: 'number',
+					required: true,
+					rule: ''
+				},
+			]} />
+			<ResponseExample responseExample={
+				`{ status: 204, body: null }
 
 { status: 404, error: "任務不存在" }
 
 { status: 500, error: "系統發生錯誤，請稍後再試" }`} />
-			</Path>
-		</div>
-	)
+		</Path>
+	</>)
 }
 
 export default function APIdocument() {
 	return (
-		<main className={`bg-gray-100 py-12 px-6 flex flex-col gap-6 ${firaCode.variable} [&_code]:font-fira-code [&_pre]:font-fira-code`}>
-			<div className="mx-auto w-full max-w-5xl">
-				<h1 className="mb-6 text-3xl font-bold">API 文件</h1>
-				<div className="shadow-sm rounded-2xl bg-white p-6">
-					<p>Request header</p>
-					<code>{'{ "'}Content-Type: application/json; charset=utf-8{'" }'}</code>
+		<main className={`bg-gray-100 py-12 px-6 flex flex-col gap-12 ${firaCode.variable} [&_code]:font-fira-code [&_pre]:font-fira-code`}>
+			<h1 className="mx-auto w-full max-w-5xl text-3xl font-bold">API 文件</h1>
+
+			<div className="relative mx-auto w-full max-w-5xl flex flex-col gap-6 lg:flex-row">
+				<PathMethodList />
+				<div className="grow flex flex-col gap-6">
+					<section className="shadow-sm rounded-2xl bg-white p-6">
+						<p className="mb-2 font-medium">Request headers</p>
+						<CodeBlock>"Content-Type": "application/json; charset=utf-8"</CodeBlock>
+					</section>
+					<Paths />
 				</div>
 			</div>
-
-			<section className="relative mx-auto w-full max-w-5xl flex flex-col gap-6 lg:flex-row">
-				<PathMethodList />
-				<Paths />
-			</section>
 		</main>
 	)
 }

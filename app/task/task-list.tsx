@@ -8,7 +8,6 @@ export default async function TaskList({ searchParams }: {
   const baseUrl = getBaseUrl();
   const queryString = getQueryString(await searchParams);
   const res = await fetch(`${baseUrl}/api/task${queryString}`, {
-    headers: { 'Content-Type': 'application/json; charset=utf-8' },
     method: 'GET'
   });
   if (!res.ok) return <DataError />

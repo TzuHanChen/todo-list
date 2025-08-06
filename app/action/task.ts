@@ -88,7 +88,6 @@ export async function deleteTask(id: string) {
 		const baseUrl = getBaseUrl();
 
 		const response = await fetch(`${baseUrl}/api/task/${id}`, {
-			headers: { 'Content-Type': 'application/json; charset=utf-8' },
 			method: 'DELETE',
 		});
 
