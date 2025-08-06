@@ -376,7 +376,7 @@ export default function APIdocument() {
 				<div className="grow flex flex-col gap-6">
 					<section className="shadow-sm rounded-2xl bg-white p-6">
 						<p className="mb-2 font-medium">Request headers</p>
-						<CodeBlock>"Content-Type": "application/json; charset=utf-8"</CodeBlock>
+						<CodeBlock>{`"Content-Type": "application/json; charset=utf-8"`}</CodeBlock>
 					</section>
 					<Paths />
 				</div>
