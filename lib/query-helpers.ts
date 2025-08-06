@@ -1,11 +1,11 @@
-import { sql } from "@/lib/db"
+import { sql } from "@/lib/db-init"
 
 export async function buildTasksQuery(
   showCompleted: string,
   sortBy: string,
   sortOrder: string,
-  pageSize: number,
-  offset: number,
+  // limit: number,
+  // offset: number,
 ) {
   const validSortFields = ["created_at", "updated_at"]
   const validSortOrders = ["ASC", "DESC"]
@@ -23,6 +23,6 @@ export async function buildTasksQuery(
     SELECT * FROM tasks
     ${whereClause}
     ORDER BY ${finalSortField} ${finalSortOrder}
-    LIMIT ${pageSize} OFFSET ${offset}
   `)
+  // LIMIT ${limit} OFFSET ${offset}
 }

@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from "next/server"
 import { buildTasksQuery } from "@/lib/query-helpers"
-import { sql } from "@/lib/db"
+import { sql } from "@/lib/db-init"
 
 export async function GET(request: NextRequest) {
   try {
@@ -8,11 +8,11 @@ export async function GET(request: NextRequest) {
     const showCompleted = searchParams.get("showCompleted") || "all"
     const sortBy = searchParams.get("sortBy") || "created_at"
     const sortOrder = searchParams.get("sortOrder") || "DESC"
-    const page = Number.parseInt(searchParams.get("page") || "1")
-    const pageSize = 6
-    const offset = (page - 1) * pageSize
+    // const page = Number.parseInt(searchParams.get("page") || "1")
+    // const limit = 6
+    // const offset = (page - 1) * limit
 
-    const result = await buildTasksQuery(showCompleted, sortBy, sortOrder, pageSize, offset)
+    const result = await buildTasksQuery(showCompleted, sortBy, sortOrder)
 
     return NextResponse.json(result, { status: 200 })
   } catch (error) {

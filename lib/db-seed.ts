@@ -1,5 +1,5 @@
-import { sql } from "@/lib/db"
-import { initializeUsersTable, initializeTasksTable } from "@/lib/db"
+import { sql } from "@/lib/db-init"
+import { initializeUsersTable, initializeTasksTable } from "@/lib/db-init"
 import bcryptjs from "bcryptjs";
 
 async function seedUsersTable() {
